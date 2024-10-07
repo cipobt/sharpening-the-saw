@@ -25,6 +25,12 @@ def is_prime(num):
 def reverse_string(s):
     return s[::-1]
 
+# Determining palindrome function
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
+
+
 
 
 number = int(input("Enter a number: "))
@@ -47,3 +53,10 @@ else:
 
 user_string = input("Enter a string: ")
 print(f"Reversed string: {reverse_string(user_string)}")
+
+
+user_string = input("Enter a word or phrase: ")
+if is_palindrome(user_string):
+    print(f"'{user_string}' is a palindrome")
+else:
+    print(f"'{user_string}' is not a palindrome")
