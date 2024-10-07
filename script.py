@@ -1,17 +1,18 @@
+# Factorial function
 def factorial(n):
     if n == 0:
         return 1
     else:
         return n * factorial(n-1)
 
-
+# Fibonacci function
 def fibonacci(n):
     fib_seq = [0, 1]
     for i in range(2, n):
         fib_seq.append(fib_seq[-1] + fib_seq[-2])
     return fib_seq[:n]
 
-
+# Prime Checker function
 def is_prime(num):
     if num < 2:
         return False
@@ -19,6 +20,10 @@ def is_prime(num):
         if num % i == 0:
             return False
     return True
+
+# Reversing String function
+def reverse_string(s):
+    return s[::-1]
 
 
 
@@ -39,3 +44,6 @@ if is_prime(number):
 else:
     print(f"{number} is not a prime number")
 
+
+user_string = input("Enter a string: ")
+print(f"Reversed string: {reverse_string(user_string)}")
