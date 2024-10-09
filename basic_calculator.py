@@ -13,6 +13,12 @@ def divide(a, b):
     else:
         return "Cannot divide by zero"
 
+def simple_interest(principal, rate, time):
+    return (principal * rate * time) / 100
+
+
+
+
 print("Simple Calculator")
 num1 = float(input("Enter first number: "))
 num2 = float(input("Enter second number: "))
@@ -28,3 +34,10 @@ elif operation == "/":
     print(f"Result: {divide(num1, num2)}")
 else:
     print("Invalid operation")
+
+
+principal = float(input("Enter the principal amount: "))
+rate = float(input("Enter the rate of interest: "))
+time = float(input("Enter the time (in years): "))
+
+print(f"Simple interest: {simple_interest(principal, rate, time)}")
