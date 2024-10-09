@@ -13,10 +13,6 @@ def word_count(sentence):
     words = sentence.split()
     return len(words)
 
-def sort_list(numbers):
-    return sorted(numbers)
-
-
 
 
 while True:
@@ -32,8 +28,3 @@ show_tasks()
 user_input = input("Enter a sentence or paragraph: ")
 print(f"Word count: {word_count(user_input)}")
 
-
-numbers = input("Enter a list of numbers separated by spaces: ").split()
-numbers = [int(n) for n in numbers]
-
-print(f"Sorted list: {sort_list(numbers)}")
