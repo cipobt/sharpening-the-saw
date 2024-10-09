@@ -7,6 +7,9 @@ def fahrenheit_to_celsius(fahrenheit):
 def is_even(number):
     return number % 2 == 0
 
+def find_max(a, b, c):
+    return max(a, b, c)
+
 
 
 
@@ -27,3 +30,10 @@ if is_even(number):
     print(f"{number} is even")
 else:
     print(f"{number} is odd")
+
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+num3 = float(input("Enter third number: "))
+
+print(f"The maximum number is: {find_max(num1, num2, num3)}")
