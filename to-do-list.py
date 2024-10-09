@@ -9,6 +9,13 @@ def show_tasks():
     for i, task in enumerate(todo_list, 1):
         print(f"{i}. {task}")
 
+def word_count(sentence):
+    words = sentence.split()
+    return len(words)
+
+
+
+
 while True:
     task = input("Enter a task to add (or 'done' to stop): ")
     if task.lower() == 'done':
@@ -17,3 +24,7 @@ while True:
         add_task(task)
 
 show_tasks()
+
+
+user_input = input("Enter a sentence or paragraph: ")
+print(f"Word count: {word_count(user_input)}")
