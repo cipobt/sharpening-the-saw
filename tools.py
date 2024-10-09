@@ -1,3 +1,10 @@
+# ANSI color codes
+RESET = "\033[0m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+RED = "\033[31m"
+
 def celsius_to_fahrenheit(celsius):
     """
     Converts Celsius to Fahrenheit.
@@ -54,41 +61,41 @@ def temperature_converter():
     and converts the temperature to the opposite unit.
     """
     try:
-        temp = float(input("Enter temperature: "))
-        unit = input("Is this in Celsius or Fahrenheit (C/F)? ").upper()
+        temp = float(input(f"{YELLOW}Enter temperature: {RESET}"))
+        unit = input(f"{YELLOW}Is this in Celsius or Fahrenheit (C/F)? {RESET}").upper()
         if unit == "C":
-            print(f"{temp}°C is {celsius_to_fahrenheit(temp):.2f}°F")
+            print(f"{GREEN}{temp}°C is {celsius_to_fahrenheit(temp):.2f}°F{RESET}")
         elif unit == "F":
-            print(f"{temp}°F is {fahrenheit_to_celsius(temp):.2f}°C")
+            print(f"{GREEN}{temp}°F is {fahrenheit_to_celsius(temp):.2f}°C{RESET}")
         else:
-            print("Invalid input. Please enter 'C' for Celsius or 'F' for Fahrenheit.")
+            print(f"{RED}Invalid input. Please enter 'C' for Celsius or 'F' for Fahrenheit.{RESET}")
     except ValueError:
-        print("Please enter a valid temperature.")
+        print(f"{RED}Please enter a valid temperature.{RESET}")
 
 def even_odd_checker():
     """
     Prompts the user to enter a number and checks whether the number is even or odd.
     """
     try:
-        number = int(input("Enter a number: "))
+        number = int(input(f"{YELLOW}Enter a number: {RESET}"))
         if is_even(number):
-            print(f"{number} is even")
+            print(f"{GREEN}{number} is even{RESET}")
         else:
-            print(f"{number} is odd")
+            print(f"{GREEN}{number} is odd{RESET}")
     except ValueError:
-        print("Please enter a valid number.")
+        print(f"{RED}Please enter a valid number.{RESET}")
 
 def max_of_three_numbers():
     """
     Prompts the user to enter three numbers and finds the maximum among them.
     """
     try:
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
-        num3 = float(input("Enter third number: "))
-        print(f"The maximum number is: {find_max(num1, num2, num3)}")
+        num1 = float(input(f"{YELLOW}Enter first number: {RESET}"))
+        num2 = float(input(f"{YELLOW}Enter second number: {RESET}"))
+        num3 = float(input(f"{YELLOW}Enter third number: {RESET}"))
+        print(f"{GREEN}The maximum number is: {find_max(num1, num2, num3)}{RESET}")
     except ValueError:
-        print("Please enter valid numbers.")
+        print(f"{RED}Please enter valid numbers.{RESET}")
 
 def main_menu():
     """
@@ -96,13 +103,13 @@ def main_menu():
     The program continues until the user chooses to exit.
     """
     while True:
-        print("\nMain Menu")
-        print("1. Temperature Converter")
-        print("2. Even or Odd Checker")
-        print("3. Maximum of Three Numbers")
-        print("4. Exit")
+        print(f"\n{BLUE}Main Menu{RESET}")
+        print(f"{YELLOW}1. Temperature Converter{RESET}")
+        print(f"{YELLOW}2. Even or Odd Checker{RESET}")
+        print(f"{YELLOW}3. Maximum of Three Numbers{RESET}")
+        print(f"{YELLOW}4. Exit{RESET}")
 
-        choice = input("Choose an option (1-4): ")
+        choice = input(f"{BLUE}Choose an option (1-4): {RESET}")
 
         if choice == '1':
             temperature_converter()
@@ -111,10 +118,10 @@ def main_menu():
         elif choice == '3':
             max_of_three_numbers()
         elif choice == '4':
-            print("Exiting program. Goodbye!")
+            print(f"{GREEN}Exiting program. Goodbye!{RESET}")
             break
         else:
-            print("Invalid choice. Please select a number between 1 and 4.")
+            print(f"{RED}Invalid choice. Please select a number between 1 and 4.{RESET}")
 
 if __name__ == "__main__":
     main_menu()
