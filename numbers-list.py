@@ -1,5 +1,8 @@
 import random
 
+def calculate_sum(numbers):
+    return sum(numbers)
+
 def sort_list(numbers):
     return sorted(numbers)
 
@@ -23,3 +26,9 @@ print(f"Sorted list: {sort_list(numbers)}")
 
 
 random_number_generator()
+
+
+numbers = input("Enter numbers separated by spaces: ").split()
+numbers = [int(n) for n in numbers]
+
+print(f"The sum of the numbers is: {calculate_sum(numbers)}")
