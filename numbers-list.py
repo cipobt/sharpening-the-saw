@@ -18,6 +18,11 @@ def random_number_generator():
     except ValueError:
         print("Please enter valid integers.")
 
+def reverse_list(numbers):
+    return numbers[::-1]
+
+
+
 
 numbers = input("Enter a list of numbers separated by spaces: ").split()
 numbers = [int(n) for n in numbers]
@@ -32,3 +37,9 @@ numbers = input("Enter numbers separated by spaces: ").split()
 numbers = [int(n) for n in numbers]
 
 print(f"The sum of the numbers is: {calculate_sum(numbers)}")
+
+
+numbers = input("Enter numbers separated by spaces: ").split()
+numbers = [int(n) for n in numbers]
+
+print(f"Reversed list: {reverse_list(numbers)}")
