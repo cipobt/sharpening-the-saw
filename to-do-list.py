@@ -13,6 +13,10 @@ def word_count(sentence):
     words = sentence.split()
     return len(words)
 
+def find_largest_word(sentence):
+    words = sentence.split()
+    largest_word = max(words, key=len)
+    return largest_word
 
 
 while True:
@@ -27,4 +31,9 @@ show_tasks()
 
 user_input = input("Enter a sentence or paragraph: ")
 print(f"Word count: {word_count(user_input)}")
+
+
+
+sentence = input("Enter a sentence: ")
+print(f"The largest word is: {find_largest_word(sentence)}")
 
