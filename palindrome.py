@@ -15,6 +15,16 @@ def is_palindrome(s):
     s = s.lower().replace(" ", "")
     return s == s[::-1]
 
+def word_lengths(words):
+    return {word: len(word) for word in words}
+
+user_input = input("Enter words separated by spaces: ").split()
+lengths = word_lengths(user_input)
+
+for word, length in lengths.items():
+    print(f"'{word}' is {length} characters long.")
+
+
 
 word = input("Enter a word or phrase: ")
 if is_palindrome(word):
