@@ -21,15 +21,25 @@ def is_prime(num):
             return False
     return True
 
-# Reversing String function
-def reverse_string(s):
-    return s[::-1]
 
-# Determining palindrome function
-def is_palindrome(s):
-    s = s.lower().replace(" ", "")
-    return s == s[::-1]
+def km_to_miles(km):
+    return km * 0.621371
 
+def miles_to_km(miles):
+    return miles / 0.621371
+
+try:
+    value = float(input("Enter the distance: "))
+    unit = input("Is the distance in kilometers or miles? (K/M): ").upper()
+
+    if unit == 'K':
+        print(f"{value} kilometers is equal to {km_to_miles(value):.2f} miles.")
+    elif unit == 'M':
+        print(f"{value} miles is equal to {miles_to_km(value):.2f} kilometers.")
+    else:
+        print("Invalid unit. Please enter 'K' for kilometers or 'M' for miles.")
+except ValueError:
+    print("Please enter a valid number.")
 
 
 
