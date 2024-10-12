@@ -6,6 +6,14 @@ def count_vowels(s):
     vowels = 'aeiou'
     return sum(1 for char in s.lower() if char in vowels)
 
+# Reversing String function
+def reverse_string(s):
+    return s[::-1]
+
+# Determining palindrome function
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
 
 
 word = input("Enter a word or phrase: ")
