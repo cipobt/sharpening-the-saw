@@ -18,6 +18,16 @@ def find_largest_word(sentence):
     largest_word = max(words, key=len)
     return largest_word
 
+def word_frequency(text):
+    words = text.split()
+    frequency = {}
+    for word in words:
+        word = word.lower().strip(".,!?")
+        frequency[word] = frequency.get(word, 0) + 1
+    return frequency
+
+
+
 
 while True:
     task = input("Enter a task to add (or 'done' to stop): ")
@@ -36,4 +46,12 @@ print(f"Word count: {word_count(user_input)}")
 
 sentence = input("Enter a sentence: ")
 print(f"The largest word is: {find_largest_word(sentence)}")
+
+
+
+user_input = input("Enter a sentence or paragraph: ")
+frequencies = word_frequency(user_input)
+
+for word, count in frequencies.items():
+    print(f"'{word}' appears {count} time(s).")
 
