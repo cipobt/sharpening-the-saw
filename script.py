@@ -59,14 +59,3 @@ if is_prime(number):
     print(f"{number} is a prime number")
 else:
     print(f"{number} is not a prime number")
-
-
-user_string = input("Enter a string: ")
-print(f"Reversed string: {reverse_string(user_string)}")
-
-
-user_string = input("Enter a word or phrase: ")
-if is_palindrome(user_string):
-    print(f"'{user_string}' is a palindrome")
-else:
-    print(f"'{user_string}' is not a palindrome")
