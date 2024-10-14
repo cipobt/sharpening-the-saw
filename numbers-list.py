@@ -24,7 +24,8 @@ def reverse_list(numbers):
 def square_numbers(numbers):
     return [n**2 for n in numbers]
 
-
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
 
 
 numbers = input("Enter a list of numbers separated by spaces: ").split()
@@ -53,3 +54,17 @@ try:
     print(f"Squared numbers: {square_numbers(numbers)}")
 except ValueError:
     print("Please enter valid numbers.")
+
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
+
+
+try:
+    numbers = list(map(float, input("Enter numbers separated by spaces: ").split()))
+    if numbers:
+        print(f"Average: {calculate_average(numbers)}")
+    else:
+        print("No numbers entered.")
+except ValueError:
+    print("Please enter valid numbers.")
+
