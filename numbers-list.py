@@ -21,6 +21,9 @@ def random_number_generator():
 def reverse_list(numbers):
     return numbers[::-1]
 
+def square_numbers(numbers):
+    return [n**2 for n in numbers]
+
 
 
 
@@ -43,3 +46,10 @@ numbers = input("Enter numbers separated by spaces: ").split()
 numbers = [int(n) for n in numbers]
 
 print(f"Reversed list: {reverse_list(numbers)}")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"Squared numbers: {square_numbers(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
