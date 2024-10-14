@@ -18,6 +18,13 @@ def is_palindrome(s):
 def word_lengths(words):
     return {word: len(word) for word in words}
 
+
+def are_anagrams(word1, word2):
+    return sorted(word1.lower()) == sorted(word2.lower())
+
+
+
+
 user_input = input("Enter words separated by spaces: ").split()
 lengths = word_lengths(user_input)
 
@@ -46,3 +53,12 @@ if is_palindrome(user_string):
     print(f"'{user_string}' is a palindrome")
 else:
     print(f"'{user_string}' is not a palindrome")
+
+
+word1 = input("Enter the first word: ")
+word2 = input("Enter the second word: ")
+
+if are_anagrams(word1, word2):
+    print(f"'{word1}' and '{word2}' are anagrams.")
+else:
+    print(f"'{word1}' and '{word2}' are not anagrams.")
