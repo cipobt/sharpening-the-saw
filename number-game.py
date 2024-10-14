@@ -30,6 +30,9 @@ def prime_numbers_in_range(start, end):
     primes = [n for n in range(start, end + 1) if is_prime(n)]
     return primes
 
+def sum_of_digits(number):
+    return sum(int(digit) for digit in str(abs(number)))
+
 
 
 guessing_game()
@@ -41,3 +44,10 @@ try:
     print(f"Prime numbers between {start} and {end}: {prime_numbers_in_range(start, end)}")
 except ValueError:
     print("Please enter valid integers.")
+
+
+try:
+    user_input = int(input("Enter a number: "))
+    print(f"Sum of digits: {sum_of_digits(user_input)}")
+except ValueError:
+    print("Please enter a valid integer.")
