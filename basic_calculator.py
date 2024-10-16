@@ -12,6 +12,16 @@ def divide(a, b):
         return "Error: Division by zero is not allowed."
     return a / b
 
+
+def simple_interest(principal, rate, time):
+    return (principal * rate * time) / 100
+
+
+def calculate_tip(total, percentage):
+    return total * (percentage / 100)
+
+
+
 try:
     print("Basic calculator")
     num1 = float(input("Enter the first number: "))
@@ -32,12 +42,21 @@ except ValueError:
     print("Please enter valid numbers.")
 
 
-def simple_interest(principal, rate, time):
-    return (principal * rate * time) / 100
-
 
 principal = float(input("Enter the principal amount: "))
 rate = float(input("Enter the rate of interest: "))
 time = float(input("Enter the time (in years): "))
 
 print(f"Simple interest: {simple_interest(principal, rate, time)}")
+
+
+
+
+try:
+    total_bill = float(input("Enter the total bill amount: "))
+    tip_percentage = float(input("Enter the tip percentage: "))
+    tip = calculate_tip(total_bill, tip_percentage)
+    print(f"Tip amount: {tip:.2f}")
+    print(f"Total amount including tip: {total_bill + tip:.2f}")
+except ValueError:
+    print("Please enter valid numbers.")
