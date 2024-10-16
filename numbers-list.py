@@ -27,6 +27,10 @@ def square_numbers(numbers):
 def calculate_average(numbers):
     return sum(numbers) / len(numbers)
 
+def find_min_max(numbers):
+    return min(numbers), max(numbers)
+
+
 
 numbers = input("Enter a list of numbers separated by spaces: ").split()
 numbers = [int(n) for n in numbers]
@@ -65,6 +69,15 @@ try:
         print(f"Average: {calculate_average(numbers)}")
     else:
         print("No numbers entered.")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    min_num, max_num = find_min_max(numbers)
+    print(f"Minimum number: {min_num}")
+    print(f"Maximum number: {max_num}")
 except ValueError:
     print("Please enter valid numbers.")
 
