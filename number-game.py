@@ -34,6 +34,16 @@ def sum_of_digits(number):
     return sum(int(digit) for digit in str(abs(number)))
 
 
+def check_number_sign(number):
+    if number > 0:
+        return "Positive"
+    elif number < 0:
+        return "Negative"
+    else:
+        return "Zero"
+
+
+
 
 guessing_game()
 
@@ -51,3 +61,10 @@ try:
     print(f"Sum of digits: {sum_of_digits(user_input)}")
 except ValueError:
     print("Please enter a valid integer.")
+
+
+try:
+    user_input = float(input("Enter a number: "))
+    print(f"The number is {check_number_sign(user_input)}.")
+except ValueError:
+    print("Please enter a valid number.")
