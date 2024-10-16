@@ -27,6 +27,11 @@ def word_frequency(text):
     return frequency
 
 
+def convert_to_uppercase(words):
+    return [word.upper() for word in words]
+
+
+
 
 
 while True:
@@ -55,3 +60,7 @@ frequencies = word_frequency(user_input)
 for word, count in frequencies.items():
     print(f"'{word}' appears {count} time(s).")
 
+
+
+user_input = input("Enter words separated by spaces: ").split()
+print(f"Uppercase words: {convert_to_uppercase(user_input)}")
