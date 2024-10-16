@@ -43,11 +43,14 @@ except ValueError:
 
 
 
-principal = float(input("Enter the principal amount: "))
-rate = float(input("Enter the rate of interest: "))
-time = float(input("Enter the time (in years): "))
-
-print(f"Simple interest: {simple_interest(principal, rate, time)}")
+try:
+    principal = float(input("Enter the principal amount: "))
+    rate = float(input("Enter the interest rate: "))
+    time = float(input("Enter the time in years: "))
+    interest = simple_interest(principal, rate, time)
+    print(f"Simple Interest: {interest:.2f}")
+except ValueError:
+    print("Please enter valid numbers.")
 
 
 
