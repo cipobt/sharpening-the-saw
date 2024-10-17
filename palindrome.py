@@ -25,7 +25,8 @@ def are_anagrams(word1, word2):
 def reverse_string(s):
     return s[::-1]
 
-
+def count_character(string, char):
+    return string.lower().count(char.lower())
 
 
 user_input = input("Enter words separated by spaces: ").split()
@@ -69,3 +70,14 @@ else:
 
 user_input = input("Enter a string: ")
 print(f"Reversed string: {reverse_string(user_input)}")
+
+
+user_input = input("Enter a string: ")
+character = input("Enter a character to count: ")
+
+if len(character) != 1:
+    print("Please enter a single character.")
+else:
+    print(f"'{character}' appears {count_character(user_input, character)} time(s) in the string.")
+
+
