@@ -30,6 +30,10 @@ def calculate_average(numbers):
 def find_min_max(numbers):
     return min(numbers), max(numbers)
 
+def find_common_elements(list1, list2):
+    return list(set(list1) & set(list2))
+
+
 
 
 numbers = input("Enter a list of numbers separated by spaces: ").split()
@@ -81,3 +85,11 @@ try:
 except ValueError:
     print("Please enter valid numbers.")
 
+
+try:
+    list1 = list(map(int, input("Enter numbers for the first list separated by spaces: ").split()))
+    list2 = list(map(int, input("Enter numbers for the second list separated by spaces: ").split()))
+    common_elements = find_common_elements(list1, list2)
+    print(f"Common elements: {common_elements}")
+except ValueError:
+    print("Please enter valid numbers.")
