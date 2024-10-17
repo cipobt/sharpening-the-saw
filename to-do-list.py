@@ -31,7 +31,8 @@ def convert_to_uppercase(words):
     return [word.upper() for word in words]
 
 
-
+def remove_duplicates(numbers):
+    return list(set(numbers))
 
 
 while True:
@@ -64,3 +65,12 @@ for word, count in frequencies.items():
 
 user_input = input("Enter words separated by spaces: ").split()
 print(f"Uppercase words: {convert_to_uppercase(user_input)}")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"List without duplicates: {remove_duplicates(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
