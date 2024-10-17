@@ -33,6 +33,10 @@ def find_min_max(numbers):
 def find_common_elements(list1, list2):
     return list(set(list1) & set(list2))
 
+def second_largest(numbers):
+    unique_numbers = list(set(numbers))  # Remove duplicates
+    unique_numbers.sort(reverse=True)  # Sort in descending order
+    return unique_numbers[1] if len(unique_numbers) > 1 else "Not enough unique numbers"
 
 
 
@@ -91,5 +95,13 @@ try:
     list2 = list(map(int, input("Enter numbers for the second list separated by spaces: ").split()))
     common_elements = find_common_elements(list1, list2)
     print(f"Common elements: {common_elements}")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"The second largest number is: {second_largest(numbers)}")
 except ValueError:
     print("Please enter valid numbers.")
