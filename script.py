@@ -34,6 +34,9 @@ def calculate_area(radius):
     return math.pi * radius**2
 
 
+def calculate_perimeter(length, width):
+    return 2 * (length + width)
+
 
 
 
@@ -76,3 +79,11 @@ try:
     print(f"The area of the circle is: {calculate_area(radius):.2f}")
 except ValueError:
     print("Please enter a valid number for the radius.")
+
+
+try:
+    length = float(input("Enter the length of the rectangle: "))
+    width = float(input("Enter the width of the rectangle: "))
+    print(f"The perimeter of the rectangle is: {calculate_perimeter(length, width)}")
+except ValueError:
+    print("Please enter valid numbers.")
