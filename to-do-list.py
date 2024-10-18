@@ -35,6 +35,12 @@ def remove_duplicates(numbers):
     return list(set(numbers))
 
 
+def is_digit(string):
+    return string.isdigit()
+
+
+
+
 while True:
     task = input("Enter a task to add (or 'done' to stop): ")
     if task.lower() == 'done':
@@ -74,3 +80,8 @@ except ValueError:
     print("Please enter valid numbers.")
 
 
+user_input = input("Enter a string: ")
+if is_digit(user_input):
+    print(f"'{user_input}' is composed of digits.")
+else:
+    print(f"'{user_input}' is not composed of digits.")
