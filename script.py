@@ -28,6 +28,15 @@ def km_to_miles(km):
 def miles_to_km(miles):
     return miles / 0.621371
 
+import math
+
+def calculate_area(radius):
+    return math.pi * radius**2
+
+
+
+
+
 try:
     value = float(input("Enter the distance: "))
     unit = input("Is the distance in kilometers or miles? (K/M): ").upper()
@@ -59,3 +68,11 @@ if is_prime(number):
     print(f"{number} is a prime number")
 else:
     print(f"{number} is not a prime number")
+
+
+
+try:
+    radius = float(input("Enter the radius of the circle: "))
+    print(f"The area of the circle is: {calculate_area(radius):.2f}")
+except ValueError:
+    print("Please enter a valid number for the radius.")
