@@ -30,6 +30,9 @@ def calculate_average(numbers):
 def find_min_max(numbers):
     return min(numbers), max(numbers)
 
+def calculate_average(numbers):
+    return sum(numbers) / len(numbers)
+
 def find_common_elements(list1, list2):
     return list(set(list1) & set(list2))
 
@@ -37,6 +40,10 @@ def second_largest(numbers):
     unique_numbers = list(set(numbers))  # Remove duplicates
     unique_numbers.sort(reverse=True)  # Sort in descending order
     return unique_numbers[1] if len(unique_numbers) > 1 else "Not enough unique numbers"
+
+def convert_to_integers(strings):
+    return [int(num) for num in strings]
+
 
 
 
@@ -67,8 +74,6 @@ try:
 except ValueError:
     print("Please enter valid numbers.")
 
-def calculate_average(numbers):
-    return sum(numbers) / len(numbers)
 
 
 try:
@@ -105,3 +110,12 @@ try:
     print(f"The second largest number is: {second_largest(numbers)}")
 except ValueError:
     print("Please enter valid numbers.")
+
+
+user_input = input("Enter numbers separated by spaces: ").split()
+try:
+    numbers = convert_to_integers(user_input)
+    print(f"Converted list: {numbers}")
+except ValueError:
+    print("Please enter valid numbers.")
+
