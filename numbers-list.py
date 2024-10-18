@@ -44,6 +44,11 @@ def second_largest(numbers):
 def convert_to_integers(strings):
     return [int(num) for num in strings]
 
+import math
+
+def multiply_elements(numbers):
+    return math.prod(numbers)
+
 
 
 
@@ -119,3 +124,8 @@ try:
 except ValueError:
     print("Please enter valid numbers.")
 
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"The product of all elements is: {multiply_elements(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
