@@ -33,6 +33,11 @@ def word_lengths(sentence):
     words = sentence.split()
     return {word: len(word) for word in words}
 
+def convert_to_title_case(string):
+    return string.title()
+
+
+
 
 
 user_input = input("Enter words separated by spaces: ").split()
@@ -93,3 +98,7 @@ lengths = word_lengths(user_input)
 for word, length in lengths.items():
     print(f"'{word}' is {length} characters long.")
 
+
+
+user_input = input("Enter a string: ")
+print(f"Title case: {convert_to_title_case(user_input)}")
