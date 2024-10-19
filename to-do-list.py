@@ -38,6 +38,8 @@ def remove_duplicates(numbers):
 def is_digit(string):
     return string.isdigit()
 
+def first_and_last_element(lst):
+    return lst[0], lst[-1]
 
 
 
@@ -85,3 +87,12 @@ if is_digit(user_input):
     print(f"'{user_input}' is composed of digits.")
 else:
     print(f"'{user_input}' is not composed of digits.")
+
+
+try:
+    elements = input("Enter list elements separated by spaces: ").split()
+    first, last = first_and_last_element(elements)
+    print(f"First element: {first}, Last element: {last}")
+except IndexError:
+    print("The list must contain at least one element.")
+
