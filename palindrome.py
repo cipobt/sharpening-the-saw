@@ -36,6 +36,9 @@ def word_lengths(sentence):
 def convert_to_title_case(string):
     return string.title()
 
+def longest_word_length(sentence):
+    words = sentence.split()
+    return max(len(word) for word in words)
 
 
 
@@ -102,3 +105,8 @@ for word, length in lengths.items():
 
 user_input = input("Enter a string: ")
 print(f"Title case: {convert_to_title_case(user_input)}")
+
+
+sentence = input("Enter a sentence: ")
+print(f"The length of the longest word is: {longest_word_length(sentence)}")
+
