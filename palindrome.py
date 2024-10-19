@@ -40,6 +40,10 @@ def longest_word_length(sentence):
     words = sentence.split()
     return max(len(word) for word in words)
 
+def count_vowels(string):
+    vowels = 'aeiou'
+    return sum(1 for char in string.lower() if char in vowels)
+
 
 
 
@@ -110,3 +114,6 @@ print(f"Title case: {convert_to_title_case(user_input)}")
 sentence = input("Enter a sentence: ")
 print(f"The length of the longest word is: {longest_word_length(sentence)}")
 
+
+user_input = input("Enter a string: ")
+print(f"Number of vowels: {count_vowels(user_input)}")
