@@ -49,6 +49,11 @@ import math
 def multiply_elements(numbers):
     return math.prod(numbers)
 
+def count_even_odd(numbers):
+    even_count = len([n for n in numbers if n % 2 == 0])
+    odd_count = len([n for n in numbers if n % 2 != 0])
+    return even_count, odd_count
+
 
 
 
@@ -127,5 +132,13 @@ except ValueError:
 try:
     numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
     print(f"The product of all elements is: {multiply_elements(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    evens, odds = count_even_odd(numbers)
+    print(f"Even numbers: {evens}, Odd numbers: {odds}")
 except ValueError:
     print("Please enter valid numbers.")
