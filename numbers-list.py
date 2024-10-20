@@ -15,6 +15,17 @@ def get_float_list(prompt="Enter numbers separated by spaces: "):
         return []
 
 
+def calculate_sum(numbers):
+    if not numbers:
+        return "No numbers entered."
+    return sum(numbers)
+
+def find_min_max(numbers):
+    if not numbers:
+        return "No numbers entered."
+    return min(numbers), max(numbers)
+
+
 
 def calculate_sum(numbers):
     return sum(numbers)
