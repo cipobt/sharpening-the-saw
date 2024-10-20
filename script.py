@@ -37,6 +37,9 @@ def calculate_area(radius):
 def calculate_perimeter(length, width):
     return 2 * (length + width)
 
+def calculate_triangle_area(base, height):
+    return 0.5 * base * height
+
 
 
 
@@ -85,5 +88,13 @@ try:
     length = float(input("Enter the length of the rectangle: "))
     width = float(input("Enter the width of the rectangle: "))
     print(f"The perimeter of the rectangle is: {calculate_perimeter(length, width)}")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
+try:
+    base = float(input("Enter the base of the triangle: "))
+    height = float(input("Enter the height of the triangle: "))
+    print(f"The area of the triangle is: {calculate_triangle_area(base, height):.2f}")
 except ValueError:
     print("Please enter valid numbers.")
