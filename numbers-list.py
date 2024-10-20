@@ -1,5 +1,21 @@
 import random
 
+def get_number_list(prompt="Enter numbers separated by spaces: "):
+    try:
+        return list(map(int, input(prompt).split()))
+    except ValueError:
+        print("Please enter valid numbers.")
+        return []
+
+def get_float_list(prompt="Enter numbers separated by spaces: "):
+    try:
+        return list(map(float, input(prompt).split()))
+    except ValueError:
+        print("Please enter valid numbers.")
+        return []
+
+
+
 def calculate_sum(numbers):
     return sum(numbers)
 
