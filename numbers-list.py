@@ -54,6 +54,8 @@ def count_even_odd(numbers):
     odd_count = len([n for n in numbers if n % 2 != 0])
     return even_count, odd_count
 
+def find_smallest(numbers):
+    return min(numbers)
 
 
 
@@ -142,3 +144,11 @@ try:
     print(f"Even numbers: {evens}, Odd numbers: {odds}")
 except ValueError:
     print("Please enter valid numbers.")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"The smallest number is: {find_smallest(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
+
