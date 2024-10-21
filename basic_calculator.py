@@ -19,6 +19,31 @@ def calculator_menu():
         print("Please enter valid numbers.")
 
 
+def main_menu():
+    """Main menu to allow the user to select which function to use."""
+    while True:
+        print("\nMain Menu:")
+        print("1. Basic Calculator")
+        print("2. Simple Interest Calculator")
+        print("3. Tip Calculator")
+        print("4. Exit")
+
+        choice = input("Choose an option (1-4): ")
+
+        if choice == '1':
+            calculator_menu()
+        elif choice == '2':
+            simple_interest_menu()
+        elif choice == '3':
+            tip_calculator_menu()
+        elif choice == '4':
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+
+
 def add(a, b):
     return a + b
 
