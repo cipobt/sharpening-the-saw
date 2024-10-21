@@ -1,3 +1,11 @@
+# ANSI color codes
+RESET = "\033[0m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+RED = "\033[31m"
+
+
 def calculator_menu():
     """Displays the calculator menu and allows the user to perform basic operations."""
     try:
@@ -22,13 +30,13 @@ def calculator_menu():
 def main_menu():
     """Main menu to allow the user to select which function to use."""
     while True:
-        print("\nMain Menu:")
-        print("1. Basic Calculator")
-        print("2. Simple Interest Calculator")
-        print("3. Tip Calculator")
-        print("4. Exit")
+        print(f"\n{BLUE}Main Menu:{RESET}")
+        print(f"{YELLOW}1. Basic Calculator{RESET}")
+        print(f"{YELLOW}2. Simple Interest Calculator{RESET}")
+        print(f"{YELLOW}3. Tip Calculator{RESET}")
+        print(f"{YELLOW}4. Exit{RESET}")
 
-        choice = input("Choose an option (1-4): ")
+        choice = input(f"{BLUE}Choose an option (1-4): {RESET}")
 
         if choice == '1':
             calculator_menu()
@@ -37,10 +45,11 @@ def main_menu():
         elif choice == '3':
             tip_calculator_menu()
         elif choice == '4':
-            print("Exiting the program. Goodbye!")
+            print(f"{GREEN}Exiting the program. Goodbye!{RESET}")
             break
         else:
-            print("Invalid choice. Please select a valid option.")
+            print(f"{RED}Invalid choice. Please select a valid option.{RESET}")
+
 
 
 
