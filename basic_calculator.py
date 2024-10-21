@@ -1,3 +1,24 @@
+def calculator_menu():
+    """Displays the calculator menu and allows the user to perform basic operations."""
+    try:
+        num1 = float(input("Enter the first number: "))
+        num2 = float(input("Enter the second number: "))
+        operation = input("Choose an operation (+, -, *, /): ")
+
+        if operation == '+':
+            print(f"Result: {add(num1, num2)}")
+        elif operation == '-':
+            print(f"Result: {subtract(num1, num2)}")
+        elif operation == '*':
+            print(f"Result: {multiply(num1, num2)}")
+        elif operation == '/':
+            print(f"Result: {divide(num1, num2)}")
+        else:
+            print("Invalid operation. Please choose from +, -, *, or /.")
+    except ValueError:
+        print("Please enter valid numbers.")
+
+
 def add(a, b):
     return a + b
 
