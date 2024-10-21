@@ -62,6 +62,17 @@ def divide(a, b):
 def simple_interest(principal, rate, time):
     return (principal * rate * time) / 100
 
+def simple_interest_menu():
+    """Prompts the user for principal, rate, and time to calculate simple interest."""
+    try:
+        principal = float(input("Enter the principal amount: "))
+        rate = float(input("Enter the interest rate: "))
+        time = float(input("Enter the time in years: "))
+        interest = simple_interest(principal, rate, time)
+        print(f"Simple Interest: {interest:.2f}")
+    except ValueError:
+        print("Please enter valid numbers.")
+
 
 def calculate_tip(total, percentage):
     return total * (percentage / 100)
