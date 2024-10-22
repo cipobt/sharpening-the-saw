@@ -41,6 +41,11 @@ def is_digit(string):
 def first_and_last_element(lst):
     return lst[0], lst[-1]
 
+def contains_number(numbers, target):
+    return target in numbers
+
+
+
 
 
 while True:
@@ -96,3 +101,12 @@ try:
 except IndexError:
     print("The list must contain at least one element.")
 
+
+
+numbers = list(map(int, input("Enter a list of numbers separated by spaces: ").split()))
+target = int(input("Enter the number to check: "))
+
+if contains_number(numbers, target):
+    print(f"{target} is in the list.")
+else:
+    print(f"{target} is not in the list.")
