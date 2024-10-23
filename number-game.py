@@ -42,6 +42,9 @@ def check_number_sign(number):
     else:
         return "Zero"
 
+def is_divisible(a, b):
+    return a % b == 0
+
 
 
 
@@ -68,3 +71,14 @@ try:
     print(f"The number is {check_number_sign(user_input)}.")
 except ValueError:
     print("Please enter a valid number.")
+
+
+try:
+    num1 = int(input("Enter the first number: "))
+    num2 = int(input("Enter the second number: "))
+    if is_divisible(num1, num2):
+        print(f"{num1} is divisible by {num2}.")
+    else:
+        print(f"{num1} is not divisible by {num2}.")
+except ValueError:
+    print("Please enter valid numbers.")
