@@ -106,14 +106,16 @@ def is_prime(n):
     return True
 
 def find_difference(numbers):
+    """Finds the difference between the largest and smallest number in a list."""
+    if not numbers:
+        return "No numbers entered."
     return max(numbers) - min(numbers)
 
-import math
-
 def product_of_numbers(numbers):
+    """Finds the product of all numbers in a list."""
+    if not numbers:
+        return "No numbers entered."
     return math.prod(numbers)
-
-
 
 # Main menu function with options for different tasks
 def main_menu():
@@ -206,17 +208,3 @@ def main_menu():
 # Run the main menu
 if __name__ == "__main__":
     main_menu()
-
-
-try:
-    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
-    print(f"The difference between the largest and smallest numbers is: {find_difference(numbers)}")
-except ValueError:
-    print("Please enter valid numbers.")
-
-
-try:
-    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
-    print(f"The product of the numbers is: {product_of_numbers(numbers)}")
-except ValueError:
-    print("Please enter valid numbers.")
