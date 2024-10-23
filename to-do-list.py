@@ -44,6 +44,9 @@ def first_and_last_element(lst):
 def contains_number(numbers, target):
     return target in numbers
 
+def is_alpha(string):
+    return string.isalpha()
+
 
 
 
@@ -110,3 +113,10 @@ if contains_number(numbers, target):
     print(f"{target} is in the list.")
 else:
     print(f"{target} is not in the list.")
+
+
+user_input = input("Enter a string: ")
+if is_alpha(user_input):
+    print(f"'{user_input}' contains only alphabetic characters.")
+else:
+    print(f"'{user_input}' contains non-alphabetic characters.")
