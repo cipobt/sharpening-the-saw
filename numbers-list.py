@@ -105,6 +105,11 @@ def is_prime(n):
             return False
     return True
 
+def find_difference(numbers):
+    return max(numbers) - min(numbers)
+
+
+
 # Main menu function with options for different tasks
 def main_menu():
     while True:
@@ -196,3 +201,10 @@ def main_menu():
 # Run the main menu
 if __name__ == "__main__":
     main_menu()
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"The difference between the largest and smallest numbers is: {find_difference(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
