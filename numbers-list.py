@@ -209,6 +209,10 @@ def largest_even(numbers):
     evens = [n for n in numbers if n % 2 == 0]
     return max(evens) if evens else "No even numbers found."
 
+def smallest_odd(numbers):
+    odds = [n for n in numbers if n % 2 != 0]
+    return min(odds) if odds else "No odd numbers found."
+
 
 
 
@@ -220,5 +224,12 @@ if __name__ == "__main__":
 try:
     numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
     print(f"Largest even number: {largest_even(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"Smallest odd number: {smallest_odd(numbers)}")
 except ValueError:
     print("Please enter valid numbers.")
