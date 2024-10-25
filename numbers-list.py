@@ -205,6 +205,20 @@ def main_menu():
         else:
             print(f"{RED}Invalid choice. Please select a valid option from the menu.{RESET}")
 
+def largest_even(numbers):
+    evens = [n for n in numbers if n % 2 == 0]
+    return max(evens) if evens else "No even numbers found."
+
+
+
+
 # Run the main menu
 if __name__ == "__main__":
     main_menu()
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"Largest even number: {largest_even(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
