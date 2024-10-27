@@ -117,6 +117,9 @@ def product_of_numbers(numbers):
         return "No numbers entered."
     return math.prod(numbers)
 
+def sum_of_odds(numbers):
+    return sum(n for n in numbers if n % 2 != 0)
+
 # Main menu function with options for different tasks
 def main_menu():
     while True:
@@ -233,3 +236,13 @@ try:
     print(f"Smallest odd number: {smallest_odd(numbers)}")
 except ValueError:
     print("Please enter valid numbers.")
+
+
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    print(f"The sum of odd numbers is: {sum_of_odds(numbers)}")
+except ValueError:
+    print("Please enter valid numbers.")
+
+
+
