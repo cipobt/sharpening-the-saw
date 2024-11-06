@@ -120,6 +120,14 @@ def product_of_numbers(numbers):
 def sum_of_odds(numbers):
     return sum(n for n in numbers if n % 2 != 0)
 
+def count_pos_neg(numbers):
+    positives = len([n for n in numbers if n > 0])
+    negatives = len([n for n in numbers if n < 0])
+    return positives, negatives
+
+
+
+
 # Main menu function with options for different tasks
 def main_menu():
     while True:
@@ -245,4 +253,10 @@ except ValueError:
     print("Please enter valid numbers.")
 
 
+try:
+    numbers = list(map(int, input("Enter numbers separated by spaces: ").split()))
+    pos, neg = count_pos_neg(numbers)
+    print(f"Positive numbers: {pos}, Negative numbers: {neg}")
+except ValueError:
+    print("Please enter valid numbers.")
 
