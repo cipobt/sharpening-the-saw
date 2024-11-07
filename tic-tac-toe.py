@@ -32,6 +32,11 @@ def check_win(board, player):
     return False
 
 
+def check_draw(board):
+    """Checks if the game is a draw."""
+    return all(cell != " " for row in board for cell in row)
+
+
 # Initialize the board with empty spaces
 board = [[" " for _ in range(3)] for _ in range(3)]
 display_board(board)
