@@ -37,7 +37,32 @@ def check_draw(board):
     return all(cell != " " for row in board for cell in row)
 
 
+def play_game():
+    """Runs the main game loop."""
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    current_player = "X"
+    while True:
+        display_board(board)
+        player_move(board, current_player)
+        
+        # Check for win or draw
+        if check_win(board, current_player):
+            display_board(board)
+            print(f"Player {current_player} wins!")
+            break
+        if check_draw(board):
+            display_board(board)
+            print("It's a draw!")
+            break
+        
+        # Switch player
+        current_player = "O" if current_player == "X" else "X"
+
+
+
 # Initialize the board with empty spaces
 board = [[" " for _ in range(3)] for _ in range(3)]
 display_board(board)
 
+# Start the game
+play_game()
