@@ -21,6 +21,17 @@ def player_move(board, player):
             print("Invalid input. Please enter numbers between 1 and 3.")
 
 
+def check_win(board, player):
+    """Checks if a player has won."""
+    # Check rows, columns, and diagonals
+    for i in range(3):
+        if all([spot == player for spot in board[i]]) or all([board[j][i] == player for j in range(3)]):
+            return True
+    if board[0][0] == board[1][1] == board[2][2] == player or board[0][2] == board[1][1] == board[2][0] == player:
+        return True
+    return False
+
+
 # Initialize the board with empty spaces
 board = [[" " for _ in range(3)] for _ in range(3)]
 display_board(board)
