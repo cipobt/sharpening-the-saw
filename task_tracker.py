@@ -31,6 +31,13 @@ class TaskTracker:
         except IndexError:
             print("Invalid task number.")
 
+    def delete_task(self, index):
+        try:
+            task = self.tasks.pop(index - 1)
+            print(f"Task '{task.title}' deleted.")
+        except IndexError:
+            print("Invalid task number.")
+
 
 if __name__ == "__main__":
     tracker = TaskTracker()
