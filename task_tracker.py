@@ -24,6 +24,14 @@ class TaskTracker:
                 status = "Completed" if task.completed else "Pending"
                 print(f"{idx}. {task.title} [{status}]")
 
+    def mark_task_completed(self, index):
+        try:
+            self.tasks[index - 1].mark_completed()
+            print(f"Task '{self.tasks[index - 1].title}' marked as completed.")
+        except IndexError:
+            print("Invalid task number.")
+
+
 if __name__ == "__main__":
     tracker = TaskTracker()
     tracker.add_task("Example Task")
