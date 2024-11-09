@@ -38,6 +38,14 @@ class TaskTracker:
         except IndexError:
             print("Invalid task number.")
 
+def display_menu():
+    print("\nTask Tracker Menu:")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Mark Task as Completed")
+    print("4. Delete Task")
+    print("5. Exit")
+
 
 if __name__ == "__main__":
     tracker = TaskTracker()
