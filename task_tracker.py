@@ -12,10 +12,11 @@ class TaskTracker:
     def __init__(self):
         self.tasks = []
 
-    def add_task(self, title):
-        new_task = Task(title)
+    def add_task(self, title, priority="Normal"):
+        new_task = Task(title, priority)
         self.tasks.append(new_task)
-        print(f"Task '{title}' added!")
+        print(f"Task '{title}' with priority '{priority}' added!")
+
 
     def show_tasks(self):
         if not self.tasks:
