@@ -22,10 +22,12 @@ class TaskTracker:
         if not self.tasks:
             print("No tasks to show.")
         else:
+            sorted_tasks = sorted(self.tasks, key=lambda x: x.priority)
             print("\nTasks:")
-            for idx, task in enumerate(self.tasks, 1):
+            for idx, task in enumerate(sorted_tasks, 1):
                 status = "Completed" if task.completed else "Pending"
-                print(f"{idx}. {task.title} [{status}]")
+                print(f"{idx}. {task.title} [{status}] - Priority: {task.priority}")
+
 
     def mark_task_completed(self, index):
         try:
@@ -48,6 +50,7 @@ def display_menu():
     print("3. Mark Task as Completed")
     print("4. Delete Task")
     print("5. Exit")
+
 
 
 if __name__ == "__main__":
