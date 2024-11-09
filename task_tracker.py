@@ -49,5 +49,24 @@ def display_menu():
 
 if __name__ == "__main__":
     tracker = TaskTracker()
-    tracker.add_task("Example Task")
-    tracker.show_tasks()
+
+    while True:
+        display_menu()
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            title = input("Enter task title: ")
+            tracker.add_task(title)
+        elif choice == "2":
+            tracker.show_tasks()
+        elif choice == "3":
+            index = int(input("Enter task number to mark as completed: "))
+            tracker.mark_task_completed(index)
+        elif choice == "4":
+            index = int(input("Enter task number to delete: "))
+            tracker.delete_task(index)
+        elif choice == "5":
+            print("Exiting Task Tracker.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
