@@ -8,3 +8,10 @@ class GameEngine:
         for row in self.board:
             print("| " + " | ".join(row) + " |")
             print("---------")
+
+    def make_move(self, row, col):
+        if self.board[row][col] == " ":
+            self.board[row][col] = self.current_player
+            return True
+        return False
+
