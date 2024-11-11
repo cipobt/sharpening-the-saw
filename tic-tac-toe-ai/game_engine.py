@@ -15,3 +15,5 @@ class GameEngine:
             return True
         return False
 
+    def switch_player(self):
+        self.current_player = "O" if self.current_player == "X" else "X"
