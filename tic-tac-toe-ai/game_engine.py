@@ -28,3 +28,6 @@ class GameEngine:
         board[0][2] == board[1][1] == board[2][0] == self.current_player:
             return True
         return False
+
+    def check_draw(self):
+        return all(cell != " " for row in self.board for cell in row)
