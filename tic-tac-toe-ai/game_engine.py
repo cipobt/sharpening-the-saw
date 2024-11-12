@@ -35,8 +35,3 @@ class GameEngine:
     def reset_board(self):
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
-
-def choose_symbol():
-    """Prompts the player to choose their symbol and returns 'X' or 'O'."""
-    symbol = input("Choose your symbol (X or O): ").upper()
-    return symbol if symbol in ["X", "O"] else "X"
