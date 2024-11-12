@@ -12,21 +12,32 @@ def play_game(game):
     It checks for a win or draw after each move, switching players if the game is not over.
     """
     while True:
+        # Display the current state of the board
         game.display_board()
+
+        # Prompt player for their move (row and column)
+        # Subtract 1 to convert user input (1-3) to zero-indexed format (0-2)
         row = int(input("Enter row (1-3): ")) - 1
         col = int(input("Enter column (1-3): ")) - 1
+
+        # Attempt to make the move; if the spot is occupied, prompt again
         if game.make_move(row, col):
+            # Check if the current move results in a win
             if game.check_win():
-                game.display_board()
-                print(f"Player {game.current_player} wins!")
-                break
+                game.display_board()  # Show final board state
+                print(f"Player {game.current_player} wins!")  # Announce winner
+                break  # End game loop
+
+            # Check if the game is a draw (no empty spaces left)
             elif game.check_draw():
-                game.display_board()
-                print("It's a draw!")
-                break
+                game.display_board()  # Show final board state
+                print("It's a draw!")  # Announce draw
+                break  # End game loop
+
+            # Switch to the other player if no win or draw
             game.switch_player()
         else:
-            print("Spot already taken. Try again.")
+            print("Spot already taken. Try again.")  # Inform player of invalid move
 
 def restart_game():
     """
@@ -44,12 +55,17 @@ if __name__ == "__main__":
     and initiates the game, providing the option to restart after each game.
     """
     while True:
+        # Prompt the player to choose a symbol, defaulting to 'X' if input is invalid
         player_symbol = choose_symbol()
+
+        # Initialize the game engine with the chosen player symbol
         game = GameEngine()
         game.current_player = player_symbol
+
+        # Start the main game loop
         play_game(game)
 
-        # Prompt for restart
+        # Ask the player if they want to restart the game
         if not restart_game():
-            print("Thanks for playing!")
-            break
+            print("Thanks for playing!")  # Farewell message
+            break  # Exit the game loop if the player does not want to restart
