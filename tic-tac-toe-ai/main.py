@@ -19,8 +19,18 @@ def play_game(game):
         else:
             print("Spot already taken. Try again.")
 
+def restart_game():
+    choice = input("Do you want to play again? (y/n): ").lower()
+    return choice == "y"
+
 if __name__ == "__main__":
-    player_symbol = choose_symbol()
-    game = GameEngine()
-    game.current_player = player_symbol
-    play_game(game)
+    while True:
+        player_symbol = choose_symbol()
+        game = GameEngine()
+        game.current_player = player_symbol
+        play_game(game)
+
+        # Prompt for restart
+        if not restart_game():
+            print("Thanks for playing!")
+            break
