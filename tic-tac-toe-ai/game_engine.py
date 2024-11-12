@@ -35,3 +35,7 @@ class GameEngine:
     def reset_board(self):
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
+
+    def ai_move(self):
+        """Placeholder for AI logic using Minimax Algorithm, to be implemented later."""
+        pass  # AI logic will be added here in the future
