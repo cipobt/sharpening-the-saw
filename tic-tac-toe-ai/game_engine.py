@@ -32,5 +32,6 @@ class GameEngine:
     def check_draw(self):
         return all(cell != " " for row in self.board for cell in row)
 
-    def reset_board():
-        return [[" " for _ in range(3)] for _ in range(3)]
+    def reset_board(self):
+        """Resets the board to its initial empty state."""
+        self.board = [[" " for _ in range(3)] for _ in range(3)]
