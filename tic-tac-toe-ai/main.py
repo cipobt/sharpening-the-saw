@@ -67,6 +67,7 @@ if __name__ == "__main__":
     while True:
         # Prompt the player to choose a symbol, defaulting to 'X' if input is invalid
         player_symbol = choose_symbol()
+        print(f"Player has chosen '{player_symbol}' as their symbol.")
 
         # Initialize the game engine with the chosen player symbol
         game = GameEngine()
