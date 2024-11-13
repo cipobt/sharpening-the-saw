@@ -1,4 +1,11 @@
 class GameEngine:
+    """
+    A class to represent the Tic-Tac-Toe game engine.
+
+    This class manages the game board, player moves, win and draw conditions, and player switching.
+    It provides methods to display the board, check game state, reset the game, and handle AI moves.
+    """
+
     def __init__(self):
         """Initializes the game engine with an empty board and sets the current player to 'X'."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
@@ -66,4 +73,3 @@ class GameEngine:
     def ai_move(self):
         """Placeholder for AI logic using Minimax Algorithm, to be implemented later."""
         pass  # AI logic will be added here in the future
-
