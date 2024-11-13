@@ -21,19 +21,20 @@ class GameEngine:
 
     def make_move(self, row, col):
         """
-        Places the current player's symbol on the board at the specified row and column.
+        Attempts to place the current player's symbol on the board at the specified row and column.
 
         Args:
             row (int): The row index for the move (0, 1, or 2).
             col (int): The column index for the move (0, 1, or 2).
 
         Returns:
-            bool: True if the move is valid and placed successfully; False if the spot is already occupied.
+            str: Message indicating if the move was successful or if the spot is taken.
         """
         if self.board[row][col] == " ":
             self.board[row][col] = self.current_player
-            return True
-        return False
+            return "Move successful"
+        return "Spot already taken"
+
 
     def switch_player(self):
         """Switches the current player from 'X' to 'O' or from 'O' to 'X'."""
