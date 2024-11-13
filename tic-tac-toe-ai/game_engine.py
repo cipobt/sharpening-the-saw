@@ -75,3 +75,12 @@ class GameEngine:
     def ai_move(self):
         """Placeholder for AI logic using Minimax Algorithm, to be implemented later."""
         pass  # AI logic will be added here in the future
+
+    def get_available_moves(self):
+        """
+        Returns a list of available spots on the board.
+
+        Returns:
+            list of tuples: Each tuple contains the (row, col) coordinates of an empty spot.
+        """
+        return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
