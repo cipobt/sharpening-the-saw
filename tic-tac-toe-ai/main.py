@@ -76,7 +76,10 @@ if __name__ == "__main__":
         # Start the main game loop
         play_game(game)
 
-        # Ask the player if they want to restart the game
-        if not restart_game():
-            print("Thanks for playing!")  # Farewell message
-            break  # Exit the game loop if the player does not want to restart
+        # Prompt to restart the game
+        if restart_game():
+            game.reset_board()  # Reset the board for a new game
+            print("Starting a new game!")
+        else:
+            print("Thanks for playing!")
+            break
