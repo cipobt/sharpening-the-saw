@@ -15,29 +15,39 @@ def play_game(game):
         # Display the current state of the board
         game.display_board()
 
-        # Prompt player for their move (row and column)
-        # Subtract 1 to convert user input (1-3) to zero-indexed format (0-2)
-        row = int(input("Enter row (1-3): ")) - 1
-        col = int(input("Enter column (1-3): ")) - 1
+        try:
+            # Prompt player for their move (row and column)
+            # Subtract 1 to convert user input (1-3) to zero-indexed format (0-2)
+            row = int(input("Enter row (1-3): ")) - 1
+            col = int(input("Enter column (1-3): ")) - 1
 
-        # Attempt to make the move; if the spot is occupied, prompt again
-        if game.make_move(row, col):
-            # Check if the current move results in a win
-            if game.check_win():
-                game.display_board()  # Show final board state
-                print(f"Player {game.current_player} wins!")  # Announce winner
-                break  # End game loop
+            # Check if row and col are within the valid range (0 to 2)
+            if row not in range(3) or col not in range(3):
+                print("Invalid input. Please enter a number between 1 and 3.")
+                continue  # Go to the next iteration of the loop to prompt again
 
-            # Check if the game is a draw (no empty spaces left)
-            elif game.check_draw():
-                game.display_board()  # Show final board state
-                print("It's a draw!")  # Announce draw
-                break  # End game loop
+            # Attempt to make the move; if the spot is occupied, prompt again
+            if game.make_move(row, col):
+                # Check if the current move results in a win
+                if game.check_win():
+                    game.display_board()  # Show final board state
+                    print(f"Player {game.current_player} wins!")  # Announce winner
+                    break  # End game loop
 
-            # Switch to the other player if no win or draw
-            game.switch_player()
-        else:
-            print("Spot already taken. Try again.")  # Inform player of invalid move
+                # Check if the game is a draw (no empty spaces left)
+                elif game.check_draw():
+                    game.display_board()  # Show final board state
+                    print("It's a draw!")  # Announce draw
+                    break  # End game loop
+
+                # Switch to the other player if no win or draw
+                game.switch_player()
+            else:
+                print("Spot already taken. Try again.")  # Inform player of invalid move
+
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
 
 def restart_game():
     """
