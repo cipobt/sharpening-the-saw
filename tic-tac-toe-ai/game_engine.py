@@ -1,3 +1,5 @@
+import random
+
 class GameEngine:
     """
     A class to represent the Tic-Tac-Toe game engine.
@@ -86,3 +88,10 @@ class GameEngine:
             list of tuples: Each tuple contains the (row, col) coordinates of an empty spot.
         """
         return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
+
+    def ai_move(self):
+        """Chooses a random empty spot on the board for the AI's move."""
+        available_moves = self.get_available_moves()
+        if available_moves:
+            row, col = random.choice(available_moves)
+            self.board[row][col] = self.ai_symbol
