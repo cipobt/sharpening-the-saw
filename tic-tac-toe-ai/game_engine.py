@@ -6,10 +6,12 @@ class GameEngine:
     It provides methods to display the board, check game state, reset the game, and handle AI moves.
     """
 
-    def __init__(self):
+    def __init__(self, player_symbol="X"):
         """Initializes the game engine with an empty board and sets the current player to 'X'."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
-        self.current_player = "X"
+        self.player_symbol = player_symbol
+        self.ai_symbol = "O" if player_symbol == "X" else "X"
+        self.current_player = self.player_symbol
 
     def display_board(self):
         """Displays the current state of the game board in a user-friendly format with clearer formatting."""
