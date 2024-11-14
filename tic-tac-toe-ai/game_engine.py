@@ -77,8 +77,25 @@ class GameEngine:
         self.board = [[" " for _ in range(3)] for _ in range(3)]
 
     def ai_move(self):
-        """Placeholder for AI logic using Minimax Algorithm, to be implemented later."""
-        pass  # AI logic will be added here in the future
+        """Uses the Minimax algorithm to determine the best move for the AI."""
+        best_score = -float('inf')
+        best_move = None
+        for (row, col) in self.get_available_moves():
+            # Simulate AI move
+            self.board[row][col] = self.ai_symbol
+            score = self.minimax(0, False)  # Minimax call with depth=0 and minimizing for opponent
+            # Undo move
+            self.board[row][col] = " "
+
+            # Select the move with the highest score
+            if score > best_score:
+                best_score = score
+                best_move = (row, col)
+
+        # Execute the best move
+        if best_move:
+            row, col = best_move
+            self.board[row][col] = self.ai_symbol
 
     def get_available_moves(self):
         """
