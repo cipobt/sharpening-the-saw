@@ -39,7 +39,6 @@ class GameEngine:
             return "Move successful"
         return "Spot already taken"
 
-
     def switch_player(self):
         """Switches the current player from 'X' to 'O' or from 'O' to 'X'."""
         self.current_player = "O" if self.current_player == "X" else "X"
@@ -76,27 +75,6 @@ class GameEngine:
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
 
-    def ai_move(self):
-        """Uses the Minimax algorithm to determine the best move for the AI."""
-        best_score = -float('inf')
-        best_move = None
-        for (row, col) in self.get_available_moves():
-            # Simulate AI move
-            self.board[row][col] = self.ai_symbol
-            score = self.minimax(0, False)  # Minimax call with depth=0 and minimizing for opponent
-            # Undo move
-            self.board[row][col] = " "
-
-            # Select the move with the highest score
-            if score > best_score:
-                best_score = score
-                best_move = (row, col)
-
-        # Execute the best move
-        if best_move:
-            row, col = best_move
-            self.board[row][col] = self.ai_symbol
-
     def get_available_moves(self):
         """
         Returns a list of available spots on the board.
@@ -107,8 +85,54 @@ class GameEngine:
         return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
 
     def ai_move(self):
-        """Chooses a random empty spot on the board for the AI's move."""
-        available_moves = self.get_available_moves()
-        if available_moves:
-            row, col = random.choice(available_moves)
+        """Uses the Minimax algorithm to determine the best move for the AI."""
+        best_score = -float('inf')
+        best_move = None
+        for (row, col) in self.get_available_moves():
+            # Simulate AI move
             self.board[row][col] = self.ai_symbol
+            score = self.minimax(0, False)  # Minimax call with depth=0 and minimizing for opponent
+            # Undo move
+            self.board[row][col] = " "
+            if score > best_score:
+                best_score = score
+                best_move = (row, col)
+
+        # Execute the best move
+        if best_move:
+            row, col = best_move
+            self.board[row][col] = self.ai_symbol
+
+    def minimax(self, depth, is_maximizing):
+        """
+        Minimax algorithm to find the optimal move for the AI, factoring in depth for faster wins or slower losses.
+
+        Args:
+            depth (int): The depth of the recursive search.
+            is_maximizing (bool): True if the AI is maximizing its score, False if minimizing.
+
+        Returns:
+            int: The score of the board after the best possible move.
+        """
+        # Check for win, loss, or draw
+        if self.check_win():
+            return 10 - depth if self.current_player == self.ai_symbol else depth - 10
+        elif self.check_draw():
+            return 0
+
+        if is_maximizing:
+            best_score = -float('inf')
+            for (row, col) in self.get_available_moves():
+                self.board[row][col] = self.ai_symbol  # Simulate AI move
+                score = self.minimax(depth + 1, False)  # Minimize opponent
+                self.board[row][col] = " "  # Undo move
+                best_score = max(score, best_score)
+            return best_score
+        else:
+            best_score = float('inf')
+            for (row, col) in self.get_available_moves():
+                self.board[row][col] = self.player_symbol  # Simulate opponent move
+                score = self.minimax(depth + 1, True)  # Maximize AI
+                self.board[row][col] = " "  # Undo move
+                best_score = min(score, best_score)
+            return best_score
