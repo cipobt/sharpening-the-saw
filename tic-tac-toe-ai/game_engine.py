@@ -106,15 +106,8 @@ class GameEngine:
     def minimax(self, depth, is_maximizing):
         """
         Minimax algorithm to find the optimal move for the AI, factoring in depth for faster wins or slower losses.
-
-        Args:
-            depth (int): The depth of the recursive search.
-            is_maximizing (bool): True if the AI is maximizing its score, False if minimizing.
-
-        Returns:
-            int: The score of the board after the best possible move.
+        Includes prioritization for blocking opponent's winning moves.
         """
-        # Check for win, loss, or draw
         if self.check_win():
             return 10 - depth if self.current_player == self.ai_symbol else depth - 10
         elif self.check_draw():
@@ -123,16 +116,18 @@ class GameEngine:
         if is_maximizing:
             best_score = -float('inf')
             for (row, col) in self.get_available_moves():
-                self.board[row][col] = self.ai_symbol  # Simulate AI move
-                score = self.minimax(depth + 1, False)  # Minimize opponent
-                self.board[row][col] = " "  # Undo move
+                self.board[row][col] = self.ai_symbol
+                score = self.minimax(depth + 1, False)
+                self.board[row][col] = " "
                 best_score = max(score, best_score)
             return best_score
         else:
             best_score = float('inf')
             for (row, col) in self.get_available_moves():
-                self.board[row][col] = self.player_symbol  # Simulate opponent move
-                score = self.minimax(depth + 1, True)  # Maximize AI
-                self.board[row][col] = " "  # Undo move
+                self.board[row][col] = self.player_symbol
+                if self.check_win():  # Detect potential player win
+                    return -10  # Prioritize blocking
+                score = self.minimax(depth + 1, True)
+                self.board[row][col] = " "
                 best_score = min(score, best_score)
             return best_score
