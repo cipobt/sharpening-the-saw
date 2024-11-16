@@ -85,11 +85,23 @@ class GameEngine:
         return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
 
     def ai_move(self, difficulty="Medium"):
-        """Uses the Minimax algorithm to determine the best move for the AI."""
+        """
+        Uses the Minimax algorithm to determine the best move for the AI,
+        prioritizing winning moves over blocking.
+        """
         # Set max depth based on difficulty
         depth_map = {"Easy": 1, "Medium": 3, "Hard": 6}
         max_depth = depth_map.get(difficulty, 3)  # Default to Medium if invalid
 
+        # Step 1: Check for immediate winning move
+        for (row, col) in self.get_available_moves():
+            self.board[row][col] = self.ai_symbol
+            if self.check_win():  # AI wins with this move
+                print("AI found a winning move!")
+                return  # Make the winning move immediately
+            self.board[row][col] = " "  # Undo the move
+
+        # Step 2: If no winning move, proceed with Minimax
         best_score = -float('inf')
         best_move = None
         for (row, col) in self.get_available_moves():
@@ -100,10 +112,10 @@ class GameEngine:
                 best_score = score
                 best_move = (row, col)
 
+        # Execute the best move determined by Minimax
         if best_move:
             row, col = best_move
             self.board[row][col] = self.ai_symbol
-
 
     def minimax(self, depth, is_maximizing, max_depth=3):
         """
