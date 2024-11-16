@@ -1,16 +1,14 @@
 from game_engine import GameEngine
 from utils import choose_symbol
 
-def play_game(game, is_ai_opponent):
+def play_game(game, is_ai_opponent, difficulty):
     """
     Runs the main game loop, allowing players to take turns and checking for win or draw conditions.
 
     Args:
         game (GameEngine): An instance of the GameEngine class to manage the game state.
         is_ai_opponent (bool): True if the player is playing against the AI, False for two-player mode.
-
-    The function continuously prompts the player to enter row and column values to make a move.
-    It checks for a win or draw after each move, switching players if the game is not over.
+        difficulty (str): The difficulty level for AI ("Easy", "Medium", "Hard").
     """
     while True:
         # Display the current state of the board
@@ -18,8 +16,8 @@ def play_game(game, is_ai_opponent):
 
         # Check if it's the AI's turn in AI mode
         if is_ai_opponent and game.current_player == game.ai_symbol:
-            print("AI is making its move...")
-            game.ai_move()  # AI makes its move
+            print(f"AI ({difficulty} mode) is making its move...")
+            game.ai_move(difficulty)  # AI makes its move
             if game.check_win():
                 game.display_board()
                 print("AI wins!")
@@ -41,7 +39,6 @@ def play_game(game, is_ai_opponent):
 
             # Attempt to make the move; if the spot is occupied, prompt again
             if game.make_move(row, col):
-                # Check for win condition
                 if game.check_win():
                     game.display_board()
                     print(f"Player {game.current_player} wins!")
@@ -81,12 +78,20 @@ if __name__ == "__main__":
         game_mode = input("Enter '1' to play against another player or '2' to play against the AI: ").strip()
         is_ai_opponent = game_mode == "2"
 
+        # Choose difficulty if playing against AI
+        difficulty = "Medium"
+        if is_ai_opponent:
+            difficulty = input("Choose AI difficulty (Easy, Medium, Hard): ").capitalize()
+            if difficulty not in ["Easy", "Medium", "Hard"]:
+                print("Invalid choice. Defaulting to Medium.")
+                difficulty = "Medium"
+
         # Initialize the game engine with the chosen player symbol
         game = GameEngine(player_symbol)
         game.current_player = player_symbol
 
         # Start the main game loop
-        play_game(game, is_ai_opponent)
+        play_game(game, is_ai_opponent, difficulty)
 
         # Prompt to restart the game
         if restart_game():
