@@ -1,4 +1,5 @@
 import random
+import time
 
 class GameEngine:
     """
@@ -87,11 +88,15 @@ class GameEngine:
     def ai_move(self, difficulty="Medium"):
         """
         Uses the Minimax algorithm to determine the best move for the AI,
-        prioritizing winning moves over blocking.
+        simulating a short thinking process.
         """
         # Set max depth based on difficulty
         depth_map = {"Easy": 1, "Medium": 3, "Hard": 6}
         max_depth = depth_map.get(difficulty, 3)  # Default to Medium if invalid
+
+        # Simulate AI thinking process
+        print(f"AI ({difficulty} mode) is thinking...")
+        time.sleep(1.5)  # Pause for 1.5 seconds to simulate thinking
 
         # Step 1: Check for immediate winning move
         for (row, col) in self.get_available_moves():
