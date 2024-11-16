@@ -1,5 +1,6 @@
 import random
 import time
+from ai_logic import ai_move, get_available_moves
 
 class GameEngine:
     """
@@ -75,87 +76,3 @@ class GameEngine:
     def reset_board(self):
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
-
-    def get_available_moves(self):
-        """
-        Returns a list of available spots on the board.
-
-        Returns:
-            list of tuples: Each tuple contains the (row, col) coordinates of an empty spot.
-        """
-        return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
-
-    def ai_move(self, difficulty="Medium"):
-        """
-        Uses the Minimax algorithm to determine the best move for the AI,
-        simulating a short thinking process.
-        """
-        # Set max depth based on difficulty
-        depth_map = {"Easy": 1, "Medium": 3, "Hard": 6}
-        max_depth = depth_map.get(difficulty, 3)  # Default to Medium if invalid
-
-        # Simulate AI thinking process
-        print(f"AI ({difficulty} mode) is thinking...")
-        time.sleep(1.5)  # Pause for 1.5 seconds to simulate thinking
-
-        # Step 1: Check for immediate winning move
-        for (row, col) in self.get_available_moves():
-            self.board[row][col] = self.ai_symbol
-            if self.check_win():  # AI wins with this move
-                print("AI found a winning move!")
-                return  # Make the winning move immediately
-            self.board[row][col] = " "  # Undo the move
-
-        # Step 2: If no winning move, proceed with Minimax
-        best_score = -float('inf')
-        best_move = None
-        for (row, col) in self.get_available_moves():
-            self.board[row][col] = self.ai_symbol
-            score = self.minimax(0, False, max_depth)
-            self.board[row][col] = " "
-            if score > best_score:
-                best_score = score
-                best_move = (row, col)
-
-        # Execute the best move determined by Minimax
-        if best_move:
-            row, col = best_move
-            self.board[row][col] = self.ai_symbol
-
-    def minimax(self, depth, is_maximizing, max_depth=3):
-        """
-        Minimax algorithm with depth limit to simulate difficulty levels.
-
-        Args:
-            depth (int): Current depth of the recursive search.
-            is_maximizing (bool): True if the AI is maximizing its score, False if minimizing.
-            max_depth (int): Maximum depth for recursion to limit computational effort.
-
-        Returns:
-            int: The score of the board after the best possible move.
-        """
-        # Stop recursion if max depth is reached
-        if depth >= max_depth:
-            return 0  # Neutral score since we don't evaluate beyond this depth
-
-        if self.check_win():
-            return 10 - depth if self.current_player == self.ai_symbol else depth - 10
-        elif self.check_draw():
-            return 0
-
-        if is_maximizing:
-            best_score = -float('inf')
-            for (row, col) in self.get_available_moves():
-                self.board[row][col] = self.ai_symbol
-                score = self.minimax(depth + 1, False, max_depth)
-                self.board[row][col] = " "
-                best_score = max(score, best_score)
-            return best_score
-        else:
-            best_score = float('inf')
-            for (row, col) in self.get_available_moves():
-                self.board[row][col] = self.player_symbol
-                score = self.minimax(depth + 1, True, max_depth)
-                self.board[row][col] = " "
-                best_score = min(score, best_score)
-            return best_score
