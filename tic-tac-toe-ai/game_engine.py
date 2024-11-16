@@ -84,30 +84,43 @@ class GameEngine:
         """
         return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
 
-    def ai_move(self):
+    def ai_move(self, difficulty="Medium"):
         """Uses the Minimax algorithm to determine the best move for the AI."""
+        # Set max depth based on difficulty
+        depth_map = {"Easy": 1, "Medium": 3, "Hard": 6}
+        max_depth = depth_map.get(difficulty, 3)  # Default to Medium if invalid
+
         best_score = -float('inf')
         best_move = None
         for (row, col) in self.get_available_moves():
-            # Simulate AI move
             self.board[row][col] = self.ai_symbol
-            score = self.minimax(0, False)  # Minimax call with depth=0 and minimizing for opponent
-            # Undo move
+            score = self.minimax(0, False, max_depth)
             self.board[row][col] = " "
             if score > best_score:
                 best_score = score
                 best_move = (row, col)
 
-        # Execute the best move
         if best_move:
             row, col = best_move
             self.board[row][col] = self.ai_symbol
 
-    def minimax(self, depth, is_maximizing):
+
+    def minimax(self, depth, is_maximizing, max_depth=3):
         """
-        Minimax algorithm to find the optimal move for the AI, factoring in depth for faster wins or slower losses.
-        Includes prioritization for blocking opponent's winning moves.
+        Minimax algorithm with depth limit to simulate difficulty levels.
+
+        Args:
+            depth (int): Current depth of the recursive search.
+            is_maximizing (bool): True if the AI is maximizing its score, False if minimizing.
+            max_depth (int): Maximum depth for recursion to limit computational effort.
+
+        Returns:
+            int: The score of the board after the best possible move.
         """
+        # Stop recursion if max depth is reached
+        if depth >= max_depth:
+            return 0  # Neutral score since we don't evaluate beyond this depth
+
         if self.check_win():
             return 10 - depth if self.current_player == self.ai_symbol else depth - 10
         elif self.check_draw():
@@ -117,7 +130,7 @@ class GameEngine:
             best_score = -float('inf')
             for (row, col) in self.get_available_moves():
                 self.board[row][col] = self.ai_symbol
-                score = self.minimax(depth + 1, False)
+                score = self.minimax(depth + 1, False, max_depth)
                 self.board[row][col] = " "
                 best_score = max(score, best_score)
             return best_score
@@ -125,9 +138,7 @@ class GameEngine:
             best_score = float('inf')
             for (row, col) in self.get_available_moves():
                 self.board[row][col] = self.player_symbol
-                if self.check_win():  # Detect potential player win
-                    return -10  # Prioritize blocking
-                score = self.minimax(depth + 1, True)
+                score = self.minimax(depth + 1, True, max_depth)
                 self.board[row][col] = " "
                 best_score = min(score, best_score)
             return best_score
