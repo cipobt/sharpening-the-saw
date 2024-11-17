@@ -14,61 +14,58 @@ def play_game(game, is_ai_opponent, difficulty):
         # Display the current state of the board
         game.display_board()
 
-        # Check if it's the AI's turn in AI mode
+        # AI makes its move if enabled
         if is_ai_opponent and game.current_player == game.ai_symbol:
             print(f"AI ({difficulty} mode) is making its move...")
-            game.ai_move(difficulty)  # AI makes its move
+            row, col = game.ai_move(difficulty)
+            print(f"AI placed '{game.ai_symbol}' at row {row + 1}, column {col + 1}")
             if game.check_win():
                 game.display_board()
-                print("AI wins!")
+                print(f"AI ({game.ai_symbol}) wins! Better luck next time!")
                 break
             elif game.check_draw():
                 game.display_board()
-                print("It's a draw!")
+                print("It's a draw! Well played!")
                 break
             game.switch_player()
             continue
 
-        # Prompt player for their move (row and column)
+        # Player's move
         try:
             row = int(input("Enter row (1-3): ")) - 1
             col = int(input("Enter column (1-3): ")) - 1
             if row not in range(3) or col not in range(3):
                 print("Invalid input. Please enter a number between 1 and 3.")
                 continue
-
-            # Attempt to make the move; if the spot is occupied, prompt again
-            if game.make_move(row, col):
+            if game.make_move(row, col) == "Move successful":
                 if game.check_win():
                     game.display_board()
-                    print(f"Player {game.current_player} wins!")
+                    print(f"Congratulations! Player {game.current_player} wins!")
                     break
                 elif game.check_draw():
                     game.display_board()
-                    print("It's a draw!")
+                    print("It's a draw! Well played!")
                     break
                 game.switch_player()
             else:
                 print("Spot already taken. Try again.")
-
         except ValueError:
             print("Invalid input. Please enter a number.")
 
 def restart_game():
     """
-    Prompts the user to decide if they want to play again.
+    Prompts the user to decide if they want to play again, exit, or view the final board.
 
     Returns:
-        bool: True if the player chooses to restart the game, False otherwise.
+        str: "restart" if the player wants to restart, "exit" to quit, or "view" to see the board.
     """
-    choice = input("Do you want to play again? (y/n): ").lower()
-    return choice == "y"
+    while True:
+        choice = input("Do you want to play again, exit, or view the final board? (restart/exit/view): ").lower()
+        if choice in ["restart", "exit", "view"]:
+            return choice
+        print("Invalid input. Please enter 'restart', 'exit', or 'view'.")
 
 if __name__ == "__main__":
-    """
-    Main entry point for the game. Sets up the game loop, allows players to choose their symbols,
-    and initiates the game, providing the option to restart after each game.
-    """
     while True:
         # Prompt the player to choose a symbol
         player_symbol = choose_symbol()
@@ -86,17 +83,23 @@ if __name__ == "__main__":
                 print("Invalid choice. Defaulting to Medium.")
                 difficulty = "Medium"
 
-        # Initialize the game engine with the chosen player symbol
+        # Initialize the game engine
         game = GameEngine(player_symbol)
         game.current_player = player_symbol
 
-        # Start the main game loop
+        # Start the game
         play_game(game, is_ai_opponent, difficulty)
 
-        # Prompt to restart the game
-        if restart_game():
-            game.reset_board()  # Reset the board for a new game
-            print("Starting a new game!")
-        else:
-            print("Thanks for playing!")
-            break
+        # Handle restart or exit
+        while True:
+            choice = restart_game()
+            if choice == "restart":
+                game.reset_board()
+                print("Starting a new game!")
+                break
+            elif choice == "exit":
+                print("Thanks for playing! Goodbye!")
+                exit(0)
+            elif choice == "view":
+                print("Final Board State:")
+                game.display_board()
