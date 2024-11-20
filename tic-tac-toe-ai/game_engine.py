@@ -76,3 +76,16 @@ class GameEngine:
     def reset_board(self):
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
+
+    def ai_move(self, difficulty):
+        """
+        Uses AI logic to determine the best move for the AI and updates the board.
+        Args:
+            difficulty (str): The difficulty level ("Easy", "Medium", "Hard").
+
+        Returns:
+            tuple: The (row, col) position of the AI's move.
+        """
+        row, col = ai_move(self.board, self.ai_symbol, self.player_symbol, difficulty)
+        self.board[row][col] = self.ai_symbol  # Place AI's symbol on the board
+        return row, col
