@@ -11,13 +11,11 @@ def play_game(game, is_ai_opponent, difficulty):
         difficulty (str): The difficulty level for AI ("Easy", "Medium", "Hard").
     """
     while True:
-        # Display the current state of the board
         game.display_board()
 
-        # AI makes its move if enabled
         if is_ai_opponent and game.current_player == game.ai_symbol:
             print(f"AI ({difficulty} mode) is making its move...")
-            row, col = game.ai_move(difficulty)
+            row, col = game.ai_move(difficulty)  # Use the GameEngine's ai_move method
             print(f"AI placed '{game.ai_symbol}' at row {row + 1}, column {col + 1}")
             if game.check_win():
                 game.display_board()
