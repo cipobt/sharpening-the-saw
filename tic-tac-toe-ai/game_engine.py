@@ -16,6 +16,7 @@ class GameEngine:
         self.player_symbol = player_symbol
         self.ai_symbol = "O" if player_symbol == "X" else "X"
         self.current_player = self.player_symbol
+        self.move_history = []
 
     def display_board(self):
         """Displays the current state of the game board in a user-friendly format with clearer formatting."""
@@ -28,18 +29,22 @@ class GameEngine:
     def make_move(self, row, col):
         """
         Attempts to place the current player's symbol on the board at the specified row and column.
-
-        Args:
-            row (int): The row index for the move (0, 1, or 2).
-            col (int): The column index for the move (0, 1, or 2).
-
-        Returns:
-            str: Message indicating if the move was successful or if the spot is taken.
+        Logs the move to the history if successful.
         """
         if self.board[row][col] == " ":
             self.board[row][col] = self.current_player
+            self.move_history.append((row, col))  # Log the move
             return "Move successful"
         return "Spot already taken"
+
+    def undo_last_move(self):
+        """Undoes the last move made by removing it from the board and the move history."""
+        if not self.move_history:
+            return "No moves to undo."
+        row, col = self.move_history.pop()
+        self.board[row][col] = " "
+        self.switch_player()  # Switch back to the player who made the move
+        return "Move undone."
 
     def switch_player(self):
         """Switches the current player from 'X' to 'O' or from 'O' to 'X'."""
