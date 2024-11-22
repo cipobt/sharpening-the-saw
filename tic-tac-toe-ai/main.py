@@ -15,7 +15,7 @@ def play_game(game, is_ai_opponent, difficulty):
 
         if is_ai_opponent and game.current_player == game.ai_symbol:
             print(f"AI ({difficulty} mode) is making its move...")
-            row, col = game.ai_move(difficulty)  # Use the GameEngine's ai_move method
+            row, col = game.ai_move(difficulty)
             print(f"AI placed '{game.ai_symbol}' at row {row + 1}, column {col + 1}")
             if game.check_win():
                 game.display_board()
@@ -28,13 +28,19 @@ def play_game(game, is_ai_opponent, difficulty):
             game.switch_player()
             continue
 
-        # Player's move
         try:
-            row = int(input("Enter row (1-3): ")) - 1
-            col = int(input("Enter column (1-3): ")) - 1
+            user_input = input("Enter your move (row, col) or type 'undo': ").strip()
+            if user_input.lower() == "undo":
+                print(game.undo_last_move())
+                continue
+
+            row, col = map(int, user_input.split(","))
+            row, col = row - 1, col - 1
+
             if row not in range(3) or col not in range(3):
                 print("Invalid input. Please enter a number between 1 and 3.")
                 continue
+
             if game.make_move(row, col) == "Move successful":
                 if game.check_win():
                     game.display_board()
@@ -48,7 +54,7 @@ def play_game(game, is_ai_opponent, difficulty):
             else:
                 print("Spot already taken. Try again.")
         except ValueError:
-            print("Invalid input. Please enter a number.")
+            print("Invalid input. Please enter valid row and column numbers.")
 
 def restart_game():
     """
