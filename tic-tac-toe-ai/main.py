@@ -20,11 +20,18 @@ def play_game(game, is_ai_opponent, difficulty):
             print(f"AI placed '{game.ai_symbol}' at row {row + 1}, column {col + 1}")
         else:
             try:
-                user_input = input("Enter your move (row, col) or type 'undo': ").strip()
-                if user_input.lower() == "undo":
-                    print(game.undo_last_move())
+                user_input = input("Enter your move (row, col) or type 'undo': ").strip().lower()
+
+                # Handle undo functionality
+                if user_input == "undo":
+                    undo_message = game.undo_last_move()
+                    print(undo_message)
+                    if undo_message == "Move undone.":
+                        print(f"It's now {game.current_player}'s turn.")
+                        game.display_board()  # Show updated board
                     continue
 
+                # Handle player move input
                 row, col = map(int, user_input.split(","))
                 row, col = row - 1, col - 1  # Convert to 0-indexed
 
