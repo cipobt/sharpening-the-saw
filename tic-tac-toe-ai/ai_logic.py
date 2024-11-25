@@ -1,5 +1,9 @@
 import time
-import random
+
+def get_available_moves(board):
+    """Returns a list of available spots on the board."""
+    return [(row, col) for row in range(3) for col in range(3) if board[row][col] == " "]
+
 
 def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizing, max_depth):
     """
@@ -17,9 +21,10 @@ def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizin
     Returns:
         int: The score of the board after the best possible move.
     """
-    if check_win(board, ai_symbol):
+    # Check win/draw conditions
+    if current_player == ai_symbol and check_win(board, ai_symbol):
         return 10 - depth
-    elif check_win(board, player_symbol):
+    elif current_player == player_symbol and check_win(board, player_symbol):
         return depth - 10
     elif check_draw(board):
         return 0
@@ -27,6 +32,7 @@ def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizin
     if depth >= max_depth:
         return 0  # Neutral score at maximum depth
 
+    # Minimax logic
     if is_maximizing:
         best_score = -float('inf')
         for (row, col) in get_available_moves(board):
@@ -44,16 +50,19 @@ def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizin
             best_score = min(score, best_score)
         return best_score
 
+
 def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
     """
-    Uses the Minimax algorithm to determine the best move for the AI,
-    prioritizing winning moves over blocking and simulating a short thinking process.
+    Uses the Minimax algorithm to determine the best move for the AI.
 
     Args:
         board (list): Current state of the game board.
         ai_symbol (str): AI's symbol ('X' or 'O').
         player_symbol (str): Opponent's symbol.
         difficulty (str): AI difficulty level ("Easy", "Medium", "Hard").
+
+    Returns:
+        tuple: The (row, col) position of the AI's move.
     """
     depth_map = {"Easy": 1, "Medium": 3, "Hard": 6}
     max_depth = depth_map.get(difficulty, 3)
@@ -65,7 +74,6 @@ def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
     for (row, col) in get_available_moves(board):
         board[row][col] = ai_symbol
         if check_win(board, ai_symbol):
-            print("AI found a winning move!")
             return row, col  # Make the winning move immediately
         board[row][col] = " "
 
@@ -81,7 +89,3 @@ def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
             best_move = (row, col)
 
     return best_move
-
-def check_draw(board):
-    """Checks if the board is full, resulting in a draw."""
-    return all(cell != " " for row in board for cell in row)
