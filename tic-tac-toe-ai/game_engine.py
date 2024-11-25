@@ -52,24 +52,23 @@ class GameEngine:
         """Switches the current player from 'X' to 'O' or from 'O' to 'X'."""
         self.current_player = "O" if self.current_player == "X" else "X"
 
-    # def check_win(self):
-    #     """
-    #     Checks if the current player has won the game.
+    def check_win(self, player_symbol):
+        """
+        Checks if the given player has won the game.
 
-    #     Returns:
-    #         bool: True if the current player has a winning combination; False otherwise.
-    #     """
-    #     board = self.board
-    #     # Check rows and columns
-    #     for i in range(3):
-    #         if all([spot == self.current_player for spot in board[i]]) or \
-    #            all([board[j][i] == self.current_player for j in range(3)]):
-    #             return True
-    #     # Check diagonals
-    #     if board[0][0] == board[1][1] == board[2][2] == self.current_player or \
-    #        board[0][2] == board[1][1] == board[2][0] == self.current_player:
-    #         return True
-    #     return False
+        Args:
+            player_symbol (str): The player's symbol ('X' or 'O').
+
+        Returns:
+            bool: True if the player has a winning combination, False otherwise.
+        """
+        board = self.board
+        for i in range(3):
+            if all(spot == player_symbol for spot in board[i]) or \
+               all(board[j][i] == player_symbol for j in range(3)):
+                return True
+        return board[0][0] == board[1][1] == board[2][2] == player_symbol or \
+               board[0][2] == board[1][1] == board[2][0] == player_symbol
 
     def check_draw(self):
         """

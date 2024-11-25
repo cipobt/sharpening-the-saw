@@ -82,15 +82,6 @@ def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
 
     return best_move
 
-def check_win(board, player_symbol):
-    """Checks if the given player has won."""
-    for i in range(3):
-        if all(spot == player_symbol for spot in board[i]) or \
-           all(board[j][i] == player_symbol for j in range(3)):
-            return True
-    return board[0][0] == board[1][1] == board[2][2] == player_symbol or \
-           board[0][2] == board[1][1] == board[2][0] == player_symbol
-
 def check_draw(board):
     """Checks if the board is full, resulting in a draw."""
     return all(cell != " " for row in board for cell in row)
