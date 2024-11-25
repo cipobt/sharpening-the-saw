@@ -24,10 +24,6 @@ class GameEngine:
             if idx < 3:
                 print("  ---|---|---")
 
-    def get_available_moves(self):
-        """Returns a list of available spots on the board."""
-        return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
-
     def make_move(self, row, col):
         """
         Attempts to place the current player's symbol on the board at the specified row and column.
@@ -52,24 +48,6 @@ class GameEngine:
         """Switches the current player from 'X' to 'O' or from 'O' to 'X'."""
         self.current_player = "O" if self.current_player == "X" else "X"
 
-    def check_win(self, player_symbol):
-        """
-        Checks if the given player has won the game.
-
-        Args:
-            player_symbol (str): The player's symbol ('X' or 'O').
-
-        Returns:
-            bool: True if the player has a winning combination, False otherwise.
-        """
-        board = self.board
-        for i in range(3):
-            if all(spot == player_symbol for spot in board[i]) or \
-               all(board[j][i] == player_symbol for j in range(3)):
-                return True
-        return board[0][0] == board[1][1] == board[2][2] == player_symbol or \
-               board[0][2] == board[1][1] == board[2][0] == player_symbol
-
     def check_draw(self):
         """
         Checks if the game has ended in a draw, meaning all cells are filled without a winner.
@@ -82,6 +60,7 @@ class GameEngine:
     def reset_board(self):
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
+        self.move_history.clear()
 
     def ai_move(self, difficulty):
         """
