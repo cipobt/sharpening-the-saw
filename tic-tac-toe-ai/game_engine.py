@@ -1,6 +1,4 @@
-import random
-import time
-from ai_logic import ai_move, get_available_moves, check_win
+from ai_logic import ai_move
 
 class GameEngine:
     """
@@ -25,6 +23,10 @@ class GameEngine:
             print(f"{idx}  " + " | ".join(row))
             if idx < 3:
                 print("  ---|---|---")
+
+    def get_available_moves(self):
+        """Returns a list of available spots on the board."""
+        return [(row, col) for row in range(3) for col in range(3) if self.board[row][col] == " "]
 
     def make_move(self, row, col):
         """

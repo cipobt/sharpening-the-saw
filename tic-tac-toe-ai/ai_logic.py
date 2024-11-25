@@ -1,10 +1,6 @@
 import time
 import random
 
-def get_available_moves(board):
-    """Returns a list of available spots on the board."""
-    return [(row, col) for row in range(3) for col in range(3) if board[row][col] == " "]
-
 def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizing, max_depth):
     """
     Minimax algorithm to find the optimal move for the AI, factoring in depth for faster wins or slower losses.
