@@ -16,7 +16,7 @@ def play_game(game, is_ai_opponent, difficulty):
         # Determine whether it's AI's turn
         if is_ai_opponent and game.current_player == game.ai_symbol:
             print(f"AI ({difficulty} mode) is making its move...")
-            row, col = game.ai_move(difficulty)
+            row, col = game.execute_ai_move(difficulty)
             print(f"AI placed '{game.ai_symbol}' at row {row + 1}, column {col + 1}")
         else:
             try:

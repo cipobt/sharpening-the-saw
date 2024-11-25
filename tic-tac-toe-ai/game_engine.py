@@ -60,11 +60,11 @@ class GameEngine:
     def reset_board(self):
         """Resets the board to its initial empty state."""
         self.board = [[" " for _ in range(3)] for _ in range(3)]
-        self.move_history.clear()
 
-    def ai_move(self, difficulty):
+    def execute_ai_move(self, difficulty):
         """
-        Uses AI logic to determine the best move for the AI and updates the board.
+        Determines the AI's move using external AI logic and updates the board.
+
         Args:
             difficulty (str): The difficulty level ("Easy", "Medium", "Hard").
 
