@@ -1,29 +1,32 @@
-Tic-Tac-Toe with AI
+# Tic-Tac-Toe with AI
 
 This is a Python-based implementation of the classic Tic-Tac-Toe game. The project allows players to compete against each other or play against an AI opponent with varying difficulty levels. It also features clean code structure and AI logic powered by the Minimax algorithm.
 
-Features
+---
 
-Game Modes:
-Player vs. Player.
+## Features
 
-Player vs. AI with three difficulty levels:
-Easy: Minimal AI strategy.
-Medium: Moderate AI intelligence.
-Hard: AI makes optimal moves using Minimax with deeper recursion.
+- **Game Modes:**
+  - Player vs. Player.
+  - Player vs. AI with three difficulty levels:
+    - **Easy:** Minimal AI strategy.
+    - **Medium:** Moderate AI intelligence.
+    - **Hard:** AI makes optimal moves using Minimax with deeper recursion.
+- **Undo Moves:** Players can undo their last move.
+- **Draw Detection:** Automatically detects and announces a draw when the board is full.
+- **Input Validation:** Ensures smooth gameplay by handling invalid inputs gracefully.
+- **Reset and Restart Options:** Start a new game anytime.
+- **Clean Code Practices:** Modularized structure with separate scripts for the game engine, AI logic, and utilities.
 
-Undo Moves: Players can undo their last move.
-Draw Detection: Automatically detects and announces a draw when the board is full.
-Input Validation: Ensures smooth gameplay by handling invalid inputs gracefully.
-Reset and Restart Options: Start a new game anytime.
-Clean Code Practices: Modularized structure with separate scripts for the game engine, AI logic, and utilities.
+---
 
-Installation
+## Installation
 
-Clone the repository:
+1. Clone the repository:
 
-git clone https://github.com/your-username/sharpening-the-saw.git
-cd sharpening-the-saw/tic-tac-toe-ai
+   ```bash
+   git clone https://github.com/your-username/sharpening-the-saw.git
+   cd sharpening-the-saw/tic-tac-toe-ai
 
 Run the game:
 
