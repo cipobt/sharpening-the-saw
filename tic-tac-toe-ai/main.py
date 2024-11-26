@@ -72,6 +72,7 @@ def restart_game():
 
 if __name__ == "__main__":
     while True:
+        
         # Prompt the player to choose a symbol
         player_symbol = choose_symbol()
         print(f"Player has chosen '{player_symbol}' as their symbol.")

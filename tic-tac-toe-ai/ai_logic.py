@@ -16,6 +16,18 @@ def check_win(board, player):
         return True
     return False
 
+def check_draw(board):
+    """
+    Checks if the board is full, resulting in a draw.
+
+    Args:
+        board (list): The current state of the board.
+
+    Returns:
+        bool: True if the board is full and no player has won; False otherwise.
+    """
+    return all(cell != " " for row in board for cell in row)
+
 def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizing, max_depth):
     """
     Minimax algorithm to find the optimal move for the AI, factoring in depth for faster wins or slower losses.
