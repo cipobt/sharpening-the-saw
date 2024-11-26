@@ -4,6 +4,17 @@ def get_available_moves(board):
     """Returns a list of available spots on the board."""
     return [(row, col) for row in range(3) for col in range(3) if board[row][col] == " "]
 
+def check_win(board, player):
+    """Checks if a player has won."""
+    # Check rows, columns, and diagonals
+    for i in range(3):
+        if all([spot == player for spot in board[i]]) or \
+           all([board[j][i] == player for j in range(3)]):
+            return True
+    if board[0][0] == board[1][1] == board[2][2] == player or \
+       board[0][2] == board[1][1] == board[2][0] == player:
+        return True
+    return False
 
 def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizing, max_depth):
     """

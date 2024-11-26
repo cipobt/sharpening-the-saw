@@ -13,52 +13,49 @@ def play_game(game, is_ai_opponent, difficulty):
     while True:
         game.display_board()
 
-        # Determine whether it's AI's turn
+        # AI's move if enabled
         if is_ai_opponent and game.current_player == game.ai_symbol:
             print(f"AI ({difficulty} mode) is making its move...")
             row, col = game.execute_ai_move(difficulty)
             print(f"AI placed '{game.ai_symbol}' at row {row + 1}, column {col + 1}")
-        else:
-            try:
-                user_input = input("Enter your move (row, col) or type 'undo': ").strip().lower()
+            if game.check_win():
+                game.display_board()
+                print(f"AI ({game.ai_symbol}) wins! Better luck next time!")
+                break
+            elif game.check_draw():
+                game.display_board()
+                print("It's a draw! Well played!")
+                break
+            game.switch_player()
+            continue
 
-                # Handle undo functionality
-                if user_input == "undo":
-                    undo_message = game.undo_last_move()
-                    print(undo_message)
-                    if undo_message == "Move undone.":
-                        print(f"It's now {game.current_player}'s turn.")
-                        game.display_board()  # Show updated board
-                    continue
-
-                # Handle player move input
-                row, col = map(int, user_input.split(","))
-                row, col = row - 1, col - 1  # Convert to 0-indexed
-
-                if row not in range(3) or col not in range(3):
-                    print("Invalid input. Please enter a number between 1 and 3.")
-                    continue
-
-                if game.make_move(row, col) != "Move successful":
-                    print("Spot already taken. Try again.")
-                    continue
-            except ValueError:
-                print("Invalid input. Please enter valid row and column numbers.")
+        # Player's move
+        try:
+            print(f"Player {game.current_player}, it's your turn.")
+            row = int(input("Enter row (1-3): ")) - 1
+            if row not in range(3):
+                print("Invalid input. Row must be between 1 and 3.")
                 continue
 
-        # Check for win or draw after every move
-        if game.check_win():
-            game.display_board()
-            print(f"Player {game.current_player} wins!" if not is_ai_opponent else f"AI ({game.ai_symbol}) wins!")
-            break
-        elif game.check_draw():
-            game.display_board()
-            print("It's a draw! Well played!")
-            break
+            col = int(input("Enter column (1-3): ")) - 1
+            if col not in range(3):
+                print("Invalid input. Column must be between 1 and 3.")
+                continue
 
-        # Switch turns
-        game.switch_player()
-
+            if game.make_move(row, col) == "Move successful":
+                if game.check_win():
+                    game.display_board()
+                    print(f"Congratulations! Player {game.current_player} wins!")
+                    break
+                elif game.check_draw():
+                    game.display_board()
+                    print("It's a draw! Well played!")
+                    break
+                game.switch_player()
+            else:
+                print("Spot already taken. Try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 3.")
 
 def restart_game():
     """
