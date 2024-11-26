@@ -1,6 +1,7 @@
 from game_engine import GameEngine
 from utils import choose_symbol
 
+
 def play_game(game, is_ai_opponent, difficulty):
     """
     Runs the main game loop, allowing players to take turns and checking for win or draw conditions.
@@ -57,6 +58,7 @@ def play_game(game, is_ai_opponent, difficulty):
         except ValueError:
             print("Invalid input. Please enter a number between 1 and 3.")
 
+
 def restart_game():
     """
     Prompts the user to decide if they want to play again, exit, or view the final board.
@@ -65,20 +67,25 @@ def restart_game():
         str: "restart" if the player wants to restart, "exit" to quit, or "view" to see the board.
     """
     while True:
-        choice = input("Do you want to play again, exit, or view the final board? (restart/exit/view): ").lower()
+        choice = input(
+            "Do you want to play again, exit, or view the final board? (restart/exit/view): "
+        ).lower()
         if choice in ["restart", "exit", "view"]:
             return choice
         print("Invalid input. Please enter 'restart', 'exit', or 'view'.")
 
+
 if __name__ == "__main__":
     while True:
-        
+
         # Prompt the player to choose a symbol
         player_symbol = choose_symbol()
         print(f"Player has chosen '{player_symbol}' as their symbol.")
 
         # Choose the game mode
-        game_mode = input("Enter '1' to play against another player or '2' to play against the AI: ").strip()
+        game_mode = input(
+            "Enter '1' to play against another player or '2' to play against the AI: "
+        ).strip()
         is_ai_opponent = game_mode == "2"
 
         # Choose difficulty if playing against AI

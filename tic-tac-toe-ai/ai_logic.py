@@ -1,20 +1,26 @@
 import time
 
+
 def get_available_moves(board):
     """Returns a list of available spots on the board."""
     return [(row, col) for row in range(3) for col in range(3) if board[row][col] == " "]
+
 
 def check_win(board, player):
     """Checks if a player has won."""
     # Check rows, columns, and diagonals
     for i in range(3):
-        if all([spot == player for spot in board[i]]) or \
-           all([board[j][i] == player for j in range(3)]):
+        if all([spot == player for spot in board[i]]) or all(
+            [board[j][i] == player for j in range(3)]
+        ):
             return True
-    if board[0][0] == board[1][1] == board[2][2] == player or \
-       board[0][2] == board[1][1] == board[2][0] == player:
+    if (
+        board[0][0] == board[1][1] == board[2][2] == player
+        or board[0][2] == board[1][1] == board[2][0] == player
+    ):
         return True
     return False
+
 
 def check_draw(board):
     """
@@ -27,6 +33,7 @@ def check_draw(board):
         bool: True if the board is full and no player has won; False otherwise.
     """
     return all(cell != " " for row in board for cell in row)
+
 
 def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizing, max_depth):
     """
@@ -57,16 +64,18 @@ def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizin
 
     # Minimax logic
     if is_maximizing:
-        best_score = -float('inf')
-        for (row, col) in get_available_moves(board):
+        best_score = -float("inf")
+        for row, col in get_available_moves(board):
             board[row][col] = ai_symbol
-            score = minimax(board, player_symbol, ai_symbol, player_symbol, depth + 1, False, max_depth)
+            score = minimax(
+                board, player_symbol, ai_symbol, player_symbol, depth + 1, False, max_depth
+            )
             board[row][col] = " "
             best_score = max(score, best_score)
         return best_score
     else:
-        best_score = float('inf')
-        for (row, col) in get_available_moves(board):
+        best_score = float("inf")
+        for row, col in get_available_moves(board):
             board[row][col] = player_symbol
             score = minimax(board, ai_symbol, ai_symbol, player_symbol, depth + 1, True, max_depth)
             board[row][col] = " "
@@ -95,7 +104,7 @@ def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
     time.sleep(1.5)
 
     # Step 1: Check for immediate winning move
-    for (row, col) in get_available_moves(board):
+    for row, col in get_available_moves(board):
         board[row][col] = ai_symbol
         if check_win(board, ai_symbol):
             board[row][col] = " "  # Reset the board before returning
@@ -103,9 +112,9 @@ def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
         board[row][col] = " "  # Reset the board if no win is found
 
     # Step 2: Use Minimax to calculate the best strategic move
-    best_score = -float('inf')
+    best_score = -float("inf")
     best_move = None
-    for (row, col) in get_available_moves(board):
+    for row, col in get_available_moves(board):
         board[row][col] = ai_symbol  # Simulate the move
         score = minimax(
             board=board,

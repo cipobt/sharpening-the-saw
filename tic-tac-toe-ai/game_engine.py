@@ -1,5 +1,6 @@
 from ai_logic import ai_move
 
+
 class GameEngine:
     """
     A class to represent the Tic-Tac-Toe game engine.
@@ -58,12 +59,15 @@ class GameEngine:
         board = self.board
         # Check rows and columns
         for i in range(3):
-            if all([spot == self.current_player for spot in board[i]]) or \
-            all([board[j][i] == self.current_player for j in range(3)]):
+            if all([spot == self.current_player for spot in board[i]]) or all(
+                [board[j][i] == self.current_player for j in range(3)]
+            ):
                 return True
         # Check diagonals
-        if board[0][0] == board[1][1] == board[2][2] == self.current_player or \
-        board[0][2] == board[1][1] == board[2][0] == self.current_player:
+        if (
+            board[0][0] == board[1][1] == board[2][2] == self.current_player
+            or board[0][2] == board[1][1] == board[2][0] == self.current_player
+        ):
             return True
         return False
 
