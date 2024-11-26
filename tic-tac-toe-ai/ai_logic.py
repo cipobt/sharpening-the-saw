@@ -37,7 +37,8 @@ def check_draw(board):
 
 def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizing, max_depth):
     """
-    Minimax algorithm to find the optimal move for the AI, factoring in depth for faster wins or slower losses.
+    Minimax algorithm to find the optimal move for the AI, factoring in depth
+    for faster wins or slower losses.
 
     Args:
         board (list): Current state of the game board.
@@ -85,7 +86,8 @@ def minimax(board, current_player, ai_symbol, player_symbol, depth, is_maximizin
 
 def ai_move(board, ai_symbol, player_symbol, difficulty="Medium"):
     """
-    Determines the best move for the AI using a combination of immediate checks and the Minimax algorithm.
+    Determines the best move for the AI using a combination of immediate checks
+    and the Minimax algorithm.
 
     Args:
         board (list): Current state of the game board.

@@ -8,7 +8,8 @@ def play_game(game, is_ai_opponent, difficulty):
 
     Args:
         game (GameEngine): An instance of the GameEngine class to manage the game state.
-        is_ai_opponent (bool): True if the player is playing against the AI, False for two-player mode.
+        is_ai_opponent (bool): True if the player is playing against the AI,
+        False for two-player mode.
         difficulty (str): The difficulty level for AI ("Easy", "Medium", "Hard").
     """
     while True:

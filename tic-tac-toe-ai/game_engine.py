@@ -18,7 +18,8 @@ class GameEngine:
         self.move_history = []
 
     def display_board(self):
-        """Displays the current state of the game board in a user-friendly format with clearer formatting."""
+        """Displays the current state of the game board in a user-friendly format
+        with clearer formatting."""
         print("\n   1   2   3")
         for idx, row in enumerate(self.board, 1):
             print(f"{idx}  " + " | ".join(row))
